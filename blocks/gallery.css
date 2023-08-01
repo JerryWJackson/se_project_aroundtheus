@@ -45,12 +45,18 @@
 .card__location {
   font-size: 24px;
   font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__like-button {
   background: transparent url(../images/heart-icon.svg) center no-repeat;
-  margin-right: 20px;
   height: 18px;
   width: 21px;
   border: none;
+}
+
+.card__like-button:hover {
+  cursor: pointer;
 }

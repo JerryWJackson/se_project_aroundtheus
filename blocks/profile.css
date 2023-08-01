@@ -26,6 +26,9 @@
   font-size: 42px;
   font-weight: 500;
   line-height: 48px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__edit-button {
@@ -36,10 +39,18 @@
   align-items: center;
 }
 
+.profile__edit-button:hover {
+  color: #545454;
+  cursor: pointer;
+}
+
 .profile__description {
   margin: 0;
   font-size: 18px;
   font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__create-button {
@@ -48,4 +59,9 @@
   width: 150px;
   border: 2px solid white;
   margin-left: auto;
+}
+
+.profile__create-button:hover {
+  color: #545454;
+  cursor: pointer;
 }
