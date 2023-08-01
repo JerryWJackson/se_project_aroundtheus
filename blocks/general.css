@@ -16,4 +16,6 @@
   margin-left: 200px;
   margin-right: 200px;
   max-width: 880px;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
