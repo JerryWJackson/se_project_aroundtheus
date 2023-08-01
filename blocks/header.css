@@ -1,0 +1,17 @@
+.header {
+  padding-top: 45px;
+  height: 74px;
+}
+
+.header__logo {
+  width: 173px;
+  height: 33px;
+}
+
+.header__divider {
+  background-color: #545454;
+  height: 1px;
+  width: 100%;
+  border: none;
+  margin-top: 41px;
+}

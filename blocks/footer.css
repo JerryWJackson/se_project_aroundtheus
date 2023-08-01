@@ -1,0 +1,9 @@
+.footer {
+    padding-top: 37px;
+    padding-bottom: 37px;
+}
+
+.footer__copyright {
+    font-style: 18px;
+    color: #545454
+}
