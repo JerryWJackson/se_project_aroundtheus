@@ -1,17 +1,20 @@
 .header {
-  padding-top: 45px;
-  height: 74px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 .header__logo {
   width: 173px;
   height: 33px;
+  padding-bottom: 30px;
+  margin-top: 56px;
 }
 
-.header__divider {
-  background-color: #545454;
-  height: 1px;
-  width: 100%;
-  border: none;
-  margin-top: 41px;
+@media screen and (max-width: 620px) {
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-top: 28px;
+    padding-left: 27px;
+  }
 }
