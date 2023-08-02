@@ -96,7 +96,8 @@
   .profile {
     flex-direction: column;
     align-items: center;
-    padding-bottom: 36px;
+    margin-bottom: 36px;
+    padding-bottom: 0;
   }
   .profile__info {
     display: flex;
@@ -107,24 +108,16 @@
     padding-left: 0;
   }
 
-  .profile__name {
-    margin-top: 30px;
-  }
-
-  .profile__edit-button {
-    margin-top: 30px;
-  }
   .profile__description {
-    margin-top: 14px;
     width: 100%;
     text-align: center;
-    padding-bottom: 36px;
   }
 
   .profile__create-button {
     margin: 0;
     width: 100%;
     max-width: 282px;
+    margin-top: 36px;
   }
 }
 
@@ -134,14 +127,15 @@
     line-height: 26.63px;
     max-width: 196px;
   }
-  .profile__image {
-    margin-bottom: 26.25px;
+  .profile__avatar-image {
+    margin-bottom: 30px;
   }
   .profile__description {
     text-align: center;
     font-size: 14px;
     line-height: normal;
     max-width: 282px;
+    margin-bottom: 14px;
   }
 
   .profile__edit-button {
