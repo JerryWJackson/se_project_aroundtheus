@@ -34,6 +34,7 @@
             <button
               type="button"
               class="profile__edit-button"
+              id="profile-edit-button"
               aria-label
             ></button>
             <p class="profile__description">Explorer</p>
@@ -143,9 +144,9 @@
         <p class="footer__copyright">&copy; 2023 Jerry W Jackson</p>
       </footer>
     </div>
-    <div class="modal">
+    <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
+        <button class="modal__close" id="edit-modal-close-button"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
           <input type="text" name="name" class="modal__input" id="name">
