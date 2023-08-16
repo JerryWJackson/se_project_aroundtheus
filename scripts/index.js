@@ -28,10 +28,17 @@ const initialCards = [
 /* -------------------------------------------------------------------------- */
 /*                                  Elements                                  */
 /* -------------------------------------------------------------------------- */
-const profileEditButton = document.querySelector("Button#profile-edit-button");
+const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const editModalCloseButton = document.querySelector("#edit-modal-close-button");
 
+console.log(profileEditButton);
+console.log(profileEditModal);
+console.log(editModalCloseButton);
+
+/* -------------------------------------------------------------------------- */
+/*                               Event Listeners                              */
+/* -------------------------------------------------------------------------- */
 profileEditButton.addEventListener("click", () => {
   profileEditModal.classList.add("modal__opened");
 });
