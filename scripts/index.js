@@ -40,9 +40,9 @@ console.log(editModalCloseButton);
 /*                               Event Listeners                              */
 /* -------------------------------------------------------------------------- */
 profileEditButton.addEventListener("click", () => {
-  profileEditModal.classList.add("modal__opened");
+  profileEditModal.classList.add("modal_opened");
 });
 
-profileCloseModal.addEventListener("click", () => {
-  profileEditModal.classList.remove("modal__opened");
+editModalCloseButton.addEventListener("click", () => {
+  profileEditModal.classList.remove("modal_opened");
 });
