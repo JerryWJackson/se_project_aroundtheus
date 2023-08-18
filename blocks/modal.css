@@ -81,3 +81,10 @@
     height: 26px;
   }
 }
+
+@media screen and (max-width: 560px) {
+  .modal__container {
+    width: 282px;
+    heigth: 322px;
+  }
+}
