@@ -84,7 +84,14 @@
 
 @media screen and (max-width: 560px) {
   .modal__container {
-    width: 282px;
-    heigth: 322px;
+    max-width: 282px;
+    max-height: 322px;
+    padding: 10px;
+    }
+    .modal__heading {
+        font-size: 18px;
+    }
+    .modal__button {
+        margin: 20px ;
   }
 }
