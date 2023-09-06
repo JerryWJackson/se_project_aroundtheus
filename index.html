@@ -41,6 +41,7 @@
           <button
             type="button"
             class="profile__create-button"
+            id="add-new-card-button"
             aria-label
           ></button>
         </section>
@@ -56,7 +57,7 @@
       <div class="modal__container">
         <button class="modal__close" id="edit-modal-close-button"></button>
         <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <form class="modal__form" id="profile-edit-modal-form">
           <input type="text" name="name" class="modal__input" id="name" />
           <input
             type="text"
@@ -65,6 +66,24 @@
             id="description"
           />
           <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="add-new-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="add-new-card-modal-close-button"></button>
+        <p class="modal__heading">New Place</p>
+        <form class="modal__form">
+          <input type="text" name="title" class="modal__input" id="title" placeholder="Title" />
+          <input
+            type="text"
+            name="image link"
+            class="modal__input"
+            id="image-link"
+            placeholder="Image Link"
+          />
+          <button class="modal__button">Create</button>
         </form>
       </div>
     </div>
