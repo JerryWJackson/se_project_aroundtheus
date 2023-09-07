@@ -40,8 +40,7 @@ const addNewCardModalForm = addNewCardModal.querySelector(
   "#add-new-card-modal-form"
 );
 const previewImageModal = document.querySelector("#preview-image-modal");
-const previewImageModalSrc =
-  previewImageModal.querySelector(".card__image-full");
+const previewImageModalSrc = previewImageModal.querySelector("#preview-image");
 const previewText = previewImageModal.querySelector(".modal__preview-text");
 
 // Templates

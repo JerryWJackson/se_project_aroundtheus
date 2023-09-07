@@ -30,7 +30,7 @@
   border-radius: 10px;
   width: 430px;
   height: 330px;
-  max-width: 75vh;
+  max-width: 75vw;
   max-height: 75vh;
 }
 
@@ -83,6 +83,11 @@
 
 .modal__image-container {
   position: relative;
+}
+
+#preview-image {
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .modal__preview-text {
