@@ -11,6 +11,11 @@
   border-radius: 10px 10px 0 0;
 }
 
+.card__image-full {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
 .card__description {
   display: flex;
   justify-content: space-between;
@@ -32,13 +37,34 @@
 }
 
 .card__like-button {
-  background: transparent url(../images/heart-icon.svg) center no-repeat;
+  background: transparent url(../images/heart-icon_inactive.svg) center
+    no-repeat;
   height: 18px;
   width: 21px;
   border: none;
 }
 
+.card__like-button_active {
+  background-image: url(../images/heart-icon_active.svg);
+}
+
 .card__like-button:hover {
   cursor: pointer;
   opacity: 50%;
+}
+
+.card__delete-icon {
+  background: transparent url(../images/trash.svg) center no-repeat;
+  position: relative;
+  height: 24px;
+  width: 24px;
+  left: 10px;
+  bottom: 300px;
+  border: none;
+}
+
+.card__delete-icon:hover {
+  background-image: url(../images/trash_hover.svg);
+  cursor: pointer;
+  opacity: 60%;
 }
