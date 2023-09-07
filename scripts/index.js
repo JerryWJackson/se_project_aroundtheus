@@ -40,7 +40,7 @@ const addNewCardModalForm = addNewCardModal.querySelector(
   "#add-new-card-modal-form"
 );
 const previewImageModal = document.querySelector("#preview-image-modal");
-const previewImageModalSrc = previewImageModal.querySelector("#preview-image");
+const previewImage = previewImageModal.querySelector("#preview-image");
 const previewText = previewImageModal.querySelector(".modal__preview-text");
 
 // Templates
@@ -97,8 +97,8 @@ function getCardElement(cardData) {
   });
 
   cardImageElement.addEventListener("click", () => {
-    previewImageModalSrc.src = cardData.link;
-    previewImageModalSrc.alt = cardData.name;
+    previewImage.src = cardData.link;
+    previewImage.alt = cardData.name;
     previewText.textContent = cardData.name;
     openModal(previewImageModal);
   });
@@ -109,6 +109,11 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
+function fillProfileForm() {
+  modalProfileEditNameInput.value = profileName.textContent;
+  modalProfileEditDescriptionInput.value = profileDescription.textContent;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                  Handlers                                  */
 /* -------------------------------------------------------------------------- */
@@ -117,6 +122,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = modalProfileEditNameInput.value;
   profileDescription.textContent = modalProfileEditDescriptionInput.value;
+  profileEditModalForm.reset();
   closeModal(profileEditModal);
 }
 
@@ -125,6 +131,7 @@ function handleAddCardFormSubmit(evt) {
   const name = modaladdNewCardNameInput.value;
   const link = modaladdNewCardImageLinkInput.value;
   renderCard({ name, link }, cardListElement);
+  addNewCardModalForm.reset();
   closeModal(addNewCardModal);
 }
 
@@ -133,8 +140,7 @@ function handleAddCardFormSubmit(evt) {
 /* -------------------------------------------------------------------------- */
 
 profileEditButton.addEventListener("click", () => {
-  modalProfileEditNameInput.value = profileName.textContent;
-  modalProfileEditDescriptionInput.value = profileDescription.textContent;
+  fillProfileForm();
   openModal(profileEditModal);
 });
 

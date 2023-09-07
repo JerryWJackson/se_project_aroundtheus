@@ -49,6 +49,10 @@
   background-size: contain;
 }
 
+.modal__close:hover {
+  opacity: 60%;
+}
+
 .modal__heading {
   color: #000;
   font-weight: 900;
@@ -81,11 +85,15 @@
   margin-top: 36px;
 }
 
+.modal__button:hover {
+  opacity: 60%;
+}
+
 .modal__image-container {
   position: relative;
 }
 
-#preview-image {
+.modal__preview-image {
   max-width: 75vw;
   max-height: 75vh;
 }
