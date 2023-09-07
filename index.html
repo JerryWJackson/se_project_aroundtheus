@@ -55,17 +55,17 @@
     </div>
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close" id="edit-modal-close-button"></button>
-        <p class="modal__heading">Edit Profile</p>
+        <button class="modal__close" id="edit-modal-close-button" type="button"></button>
+        <h2 class="modal__heading">Edit Profile</h2>
         <form class="modal__form" id="profile-edit-modal-form">
-          <input type="text" name="name" class="modal__input" id="name" />
+          <input type="text" name="name" class="modal__input" id="name" placeholder="Name" />
           <input
             type="text"
             name="description"
             class="modal__input"
             id="description"
           />
-          <button class="modal__button">Save</button>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
@@ -95,7 +95,7 @@
             placeholder="Image Link"
             required
           />
-          <button class="modal__button" type="button">Create</button>
+          <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>
