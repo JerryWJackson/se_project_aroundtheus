@@ -57,9 +57,9 @@ const modalProfileEditCloseButton = profileEditModal.querySelector(
   "#edit-modal-close-button"
 );
 const addNewCardButton = document.querySelector("#add-new-card-button");
-const modaladdNewCardNameInput = document.querySelector("#title");
-const modaladdNewCardImageLinkInput = document.querySelector("#image-link");
-const modaladdNewCardCloseButton = addNewCardModal.querySelector(
+const modalAddNewCardNameInput = document.querySelector("#title");
+const modalAddNewCardImageLinkInput = document.querySelector("#image-link");
+const modalAddNewCardCloseButton = addNewCardModal.querySelector(
   "#add-new-card-modal-close-button"
 );
 const previewImageModalCloseButton = previewImageModal.querySelector(
