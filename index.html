@@ -68,12 +68,18 @@
             class="modal__input"
             id="name"
             placeholder="Name"
+            minlength="2"
+            maxlength="40"
+            required
           />
           <input
             type="text"
             name="description"
             class="modal__input"
             id="description"
+            minlength="2"
+            maxlength="200"
+            required
           />
           <button class="modal__button" type="submit">Save</button>
         </form>
@@ -95,10 +101,12 @@
             class="modal__input"
             id="title"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
             required
           />
           <input
-            type="text"
+            type="url"
             name="image link"
             class="modal__input"
             id="image-link"
