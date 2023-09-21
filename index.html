@@ -72,6 +72,7 @@
             maxlength="40"
             required
           />
+          <span class="modal__error" id="name-error"></span>
           <input
             type="text"
             name="description"
@@ -81,6 +82,7 @@
             maxlength="200"
             required
           />
+          <span class="modal__error" id="description-error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -94,7 +96,7 @@
           id="add-new-card-modal-close-button"
         ></button>
         <h2 class="modal__heading">New Place</h2>
-        <form class="modal__form">
+        <form class="modal__form" id="create-place-modal-form">
           <input
             type="text"
             name="title"
@@ -105,14 +107,16 @@
             maxlength="30"
             required
           />
+          <span class="modal__error" id="title-error"></span>
           <input
             type="url"
-            name="image link"
+            name="image-link"
             class="modal__input"
             id="image-link"
             placeholder="Image Link"
             required
           />
+          <span class="modal__error" id="image-link-error"></span>
           <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
@@ -141,5 +145,6 @@
     </template>
 
     <script type="text/javascript" src="./scripts/index.js" defer></script>
+    <script type="text/javascript" src="./scripts/validation.js" defer></script>
   </body>
 </html>
