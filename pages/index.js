@@ -81,14 +81,19 @@ const validationSettings = {
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
-}
+};
 
-const addFormElement = addNewCardModal.querySelector('.popup__form')
-const editFormElement = profileEditModal.querySelector('.popup__form')
+const addFormElement = addNewCardModal.querySelector(".popup__form");
+const editFormElement = profileEditModal.querySelector(".popup__form");
 
-const addFormValidator - new FormValidator(validationSettings, addFormElement);
-const editFormValidator - new FormValidator(validationSettings, editFormElement);
+const addFormValidator = new FormValidator(validationSettings, addFormElement);
+const editFormValidator = new FormValidator(
+  validationSettings,
+  editFormElement
+);
 
+addFormValidator.enableValidation();
+editFormValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
