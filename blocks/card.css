@@ -38,6 +38,7 @@
   height: 18px;
   width: 21px;
   border: none;
+  justify-self: end;
 }
 
 .card__like-button_active {
@@ -54,8 +55,8 @@
   position: relative;
   height: 24px;
   width: 24px;
-  left: 10px;
-  bottom: 300px;
+  left: 245px;
+  bottom: 355px;
   border: none;
 }
 

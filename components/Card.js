@@ -8,29 +8,21 @@ export default class Card {
 
   _setEventListeners() {
     // card__like-button
-    this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-      });
+    this._cardLikeButton.addEventListener("click", () => {
+      this._handleLikeIcon();
+    });
     // card__delete-button
-    this._cardElement
-      .querySelector(".card__delete-icon")
-      .addEventListener("click", () => {
-        this._handleDeleteCard();
-      });
+    this._cardDeleteIcon.addEventListener("click", () => {
+      this._handleDeleteCard();
+    });
 
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handleImageClick(this._name, this._link);
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._handleImageClick(this._name, this._link);
+    });
   }
 
   _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+    this._cardLikeButton.classList.toggle("card__like-button_active");
   }
 
   _handleDeleteCard() {
@@ -47,14 +39,16 @@ export default class Card {
 
   getView() {
     this._cardElement = this._getTemplate();
+    this._cardLikeButton =
+      this._cardElement.querySelector(".card__like-button");
+    this._cardDeleteIcon =
+      this._cardElement.querySelector(".card__delete-icon");
+    this._cardImage = this._cardElement.querySelector(".card__image");
+    this.cardLocation = this._cardElement.querySelector(".card__location");
     // get card view
-    const cardImageElement = this._cardElement.querySelector(".card__image");
-    cardImageElement.src = this._link;
-    cardImageElement.alt = this._name;
-
-    const cardlocationElement =
-      this._cardElement.querySelector(".card__location");
-    cardlocationElement.textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this.cardLocation.textContent = this._name;
     //set event listeners
     this._setEventListeners();
     //return the card

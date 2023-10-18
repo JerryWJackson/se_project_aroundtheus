@@ -95,6 +95,7 @@ const editFormValidator = new FormValidator(
 );
 editFormValidator.enableValidation();
 
+
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -107,12 +108,11 @@ function closeModal(modal) {
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeByEscape);
+  
 }
 
 function renderCard(cardData) {
   const card = new Card(cardData, cardSelector, handleImageClick);
-  const cardEl = card.getView();
-  // console.log(cardEl.querySelector(".card__image"));
   cardListElement.prepend(card.getView());
 }
 
@@ -160,35 +160,30 @@ function handleAddCardFormSubmit(evt) {
 /*                               Event Listeners                              */
 /* -------------------------------------------------------------------------- */
 
+modalList.forEach((modal) => {
+  modal.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('modal_opened')) {
+          closeModal(modal)
+        }
+        if (evt.target.classList.contains('modal__close')) {
+          closeModal(modal)
+        }
+    })
+})
+
 profileEditButton.addEventListener("click", () => {
   fillProfileForm();
   openModal(profileEditModal);
+  addFormValidator.resetValidation();
 });
 
-modalProfileEditCloseButton.addEventListener("click", () =>
-  closeModal(profileEditModal)
-);
 profileEditModalForm.addEventListener("submit", handleProfileFormSubmit);
 
-addNewCardButton.addEventListener("click", () => openModal(addNewCardModal));
-
-modalAddNewCardCloseButton.addEventListener("click", () =>
-  closeModal(addNewCardModal)
-);
-addNewCardModal.addEventListener("submit", handleAddCardFormSubmit);
-
-previewImageModalCloseButton.addEventListener("click", () =>
-  closeModal(previewImageModal)
-);
-
-modalList.forEach((modal) => {
-  modal.addEventListener("click", (e) => {
-    console.log(e.target);
-    if (e.target.classList.contains("modal")) {
-      closeModal(modal);
-    }
-  });
+addNewCardButton.addEventListener("click", () => {
+  openModal(addNewCardModal);
+  addFormValidator.resetValidation()
 });
 
-// initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
-initialCards.forEach((cardData) => renderCard(cardData));
+addNewCardModal.addEventListener("submit", handleAddCardFormSubmit);
+
+initialCards.forEach(renderCard);

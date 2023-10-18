@@ -70,6 +70,14 @@ export default class FormValidator {
     this._submitButton.disabled = false;
   }
 
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputElements.forEach((inputElement) => {
+      console.log(inputElement);
+      this._hideInputError(inputElement); 
+    });
+  }
+
   enableValidation() {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
