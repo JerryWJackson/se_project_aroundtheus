@@ -11,13 +11,13 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        this._handleLikeIcon;
+        this._handleLikeIcon();
       });
     // card__delete-button
     this._cardElement
       .querySelector(".card__delete-icon")
       .addEventListener("click", () => {
-        this._handleDeleteCard;
+        this._handleDeleteCard();
       });
 
     this._cardElement
@@ -36,12 +36,6 @@ export default class Card {
   _handleDeleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
-  }
-
-  _handleImageClick() {
-    this._cardElement
-      .querySelector(".card__image")
-      .classList.add("modal_opened");
   }
 
   _getTemplate() {

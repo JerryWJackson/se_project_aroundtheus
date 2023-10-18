@@ -50,7 +50,8 @@ const previewText = previewImageModal.querySelector(".modal__preview-text");
 
 // Templates
 const cardSelector = "#card-template";
-
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
 // DOM Node Elements
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileName = document.querySelector(".profile__name");
@@ -109,11 +110,14 @@ function openModal(modal) {
 }
 
 function renderCard(cardData) {
-  const card = new Card(cardData, cardSelector, openModal);
+  const card = new Card(cardData, cardSelector, () => handleImageClick);
+  const cardEl = card.getView();
+  // console.log(cardEl.querySelector(".card__image"));
   cardListElement.prepend(card.getView());
 }
 
-function handleImageClick({ name, link }) {
+function handleImageClick(cardElement) {
+  console.log('clicked on image to preview!');
   const cardImageElement = cardElement.querySelector(".card__image");
   cardImageElement.addEventListener("click", () => {
     previewImage.src = link;
