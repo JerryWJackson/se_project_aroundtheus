@@ -35,22 +35,21 @@ const initialCards = [
 // Wrappers
 const modalList = document.querySelectorAll(".modal");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const addNewCardModal = document.querySelector("#add-new-card-modal");
-const previewImageModal = document.querySelector("#preview-image-modal");
-
-const cardListElement = document.querySelector(".cards__list");
-
 const profileEditModalForm = profileEditModal.querySelector(
   "#profile-edit-modal-form"
 );
+const addNewCardModal = document.querySelector("#add-new-card-modal");
 const addNewCardModalForm = addNewCardModal.querySelector(".modal__form");
+
+const previewImageModal = document.querySelector("#preview-image-modal");
+
+const cardListElement = document.querySelector(".cards__list");
 
 const previewImage = previewImageModal.querySelector("#preview-image");
 const previewText = previewImageModal.querySelector(".modal__preview-text");
 
 // Templates
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
+const cardSelector = "#card-template";
 
 // DOM Node Elements
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -83,16 +82,16 @@ const validationSettings = {
   errorClass: "modal__error_visible",
 };
 
-const addFormElement = addNewCardModal.querySelector(".popup__form");
-const editFormElement = profileEditModal.querySelector(".popup__form");
+const addFormValidator = new FormValidator(
+  validationSettings,
+  addNewCardModalForm
+);
+addFormValidator.enableValidation();
 
-const addFormValidator = new FormValidator(validationSettings, addFormElement);
 const editFormValidator = new FormValidator(
   validationSettings,
-  editFormElement
+  profileEditModalForm
 );
-
-addFormValidator.enableValidation();
 editFormValidator.enableValidation();
 
 /* -------------------------------------------------------------------------- */
@@ -109,9 +108,9 @@ function openModal(modal) {
   document.addEventListener("keydown", closeByEscape);
 }
 
-function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+function renderCard(cardData) {
+  const card = new Card(cardData, cardSelector, openModal);
+  cardListElement.prepend(card.getView());
 }
 
 function handleImageClick({ name, link }) {
@@ -123,31 +122,6 @@ function handleImageClick({ name, link }) {
     openModal(previewImageModal);
   });
 }
-// function getCardElement(cardData) {
-// const cardElement = cardTemplate.cloneNode(true);
-// const cardImageElement = cardElement.querySelector(".card__image");
-// const cardLocationElement = cardElement.querySelector(".card__location");
-// const likeButton = cardElement.querySelector(".card__like-button");
-// const deleteButton = cardElement.querySelector(".card__delete-icon");
-
-// deleteButton.addEventListener("click", () => cardElement.remove());
-
-// likeButton.addEventListener("click", () => {
-//   likeButton.classList.toggle("card__like-button_active");
-// });
-
-//   cardImageElement.addEventListener("click", () => {
-//     previewImage.src = cardData.link;
-//     previewImage.alt = cardData.name;
-//     previewText.textContent = cardData.name;
-//     openModal(previewImageModal);
-//   });
-
-//   cardImageElement.src = cardData.link;
-//   cardImageElement.alt = cardData.name;
-//   cardLocationElement.textContent = cardData.name;
-//   return cardElement;
-// }
 
 function fillProfileForm() {
   modalProfileEditNameInput.value = profileName.textContent;
@@ -176,7 +150,7 @@ function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
   const name = modalAddNewCardNameInput.value;
   const link = modalAddNewCardImageLinkInput.value;
-  renderCard({ name, link }, cardListElement);
+  renderCard({ name, link });
   evt.target.reset();
   closeModal(addNewCardModal);
 }
@@ -216,6 +190,4 @@ modalList.forEach((modal) => {
 });
 
 // initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
-initialCards.forEach(
-  (cardData) => new Card(cardData, "#card-template", handleImageClick)
-);
+initialCards.forEach((cardData) => renderCard(cardData));
