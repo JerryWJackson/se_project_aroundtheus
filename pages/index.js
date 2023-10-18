@@ -110,21 +110,18 @@ function openModal(modal) {
 }
 
 function renderCard(cardData) {
-  const card = new Card(cardData, cardSelector, () => handleImageClick);
+  const card = new Card(cardData, cardSelector, handleImageClick);
   const cardEl = card.getView();
   // console.log(cardEl.querySelector(".card__image"));
   cardListElement.prepend(card.getView());
 }
 
-function handleImageClick(cardElement) {
-  console.log('clicked on image to preview!');
-  const cardImageElement = cardElement.querySelector(".card__image");
-  cardImageElement.addEventListener("click", () => {
-    previewImage.src = link;
-    previewImage.alt = name;
-    previewText.textContent = name;
-    openModal(previewImageModal);
-  });
+function handleImageClick(name, link) {
+  console.log("clicked on image to preview!");
+  previewImage.src = link;
+  previewImage.alt = name;
+  previewText.textContent = name;
+  openModal(previewImageModal);
 }
 
 function fillProfileForm() {

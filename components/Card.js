@@ -23,7 +23,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__image")
       .addEventListener("click", () => {
-        this._handleImageClick(this);
+        this._handleImageClick(this._name, this._link);
       });
   }
 
@@ -61,29 +61,3 @@ export default class Card {
     return this._cardElement;
   }
 }
-
-// function getCardElement(cardData) {
-// const cardElement = cardTemplate.cloneNode(true);
-// const cardImageElement = cardElement.querySelector(".card__image");
-// const cardLocationElement = cardElement.querySelector(".card__location");
-// const likeButton = cardElement.querySelector(".card__like-button");
-// const deleteButton = cardElement.querySelector(".card__delete-icon");
-
-// deleteButton.addEventListener("click", () => cardElement.remove());
-
-// likeButton.addEventListener("click", () => {
-//   likeButton.classList.toggle("card__like-button_active");
-// });
-
-//   cardImageElement.addEventListener("click", () => {
-//     previewImage.src = cardData.link;
-//     previewImage.alt = cardData.name;
-//     previewText.textContent = cardData.name;
-//     openModal(previewImageModal);
-//   });
-
-//   cardImageElement.src = cardData.link;
-//   cardImageElement.alt = cardData.name;
-//   cardLocationElement.textContent = cardData.name;
-//   return cardElement;
-// }
