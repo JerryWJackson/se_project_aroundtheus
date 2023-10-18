@@ -174,7 +174,7 @@ modalList.forEach((modal) => {
 profileEditButton.addEventListener("click", () => {
   fillProfileForm();
   openModal(profileEditModal);
-  addFormValidator.resetValidation();
+  editFormValidator.resetValidation();
 });
 
 profileEditModalForm.addEventListener("submit", handleProfileFormSubmit);
