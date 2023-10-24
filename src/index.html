@@ -9,7 +9,6 @@
     <meta name="author" content="Jerry W Jackson" />
     <title>Around the US</title>
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
 
   <body class="page">
@@ -17,7 +16,7 @@
       <header class="header page__section">
         <img
           class="header__logo"
-          src="./images/around-the-us_logo.svg"
+          src="<%=require('./images/around-the-us_logo.svg')%>"
           alt="Around the US logo"
         />
       </header>
@@ -25,7 +24,7 @@
         <section class="profile page__section">
           <img
             class="profile__avatar-image"
-            src="./images/jacques-cousteau-avatar.png"
+            src="<%=require('./images/jacques-cousteau-avatar.png')%>"
             alt="Jacques Cousteau avatar image"
           />
           <div class="profile__info">
@@ -155,7 +154,5 @@
         <button type="button" class="card__delete-icon" aria-label></button>
       </li>
     </template>
-
-    <script type="module" src="./pages/index.js" defer></script>
   </body>
 </html>
