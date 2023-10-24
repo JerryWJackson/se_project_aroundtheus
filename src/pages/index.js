@@ -10,6 +10,10 @@ import {
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopUpWithImage from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
 import "./index.css"
 
 /* -------------------------------------------------------------------------- */
@@ -32,7 +36,7 @@ addFormValidator.enableValidation();
 /* ----------------------------- Edit Popup Form Profile---------------------- */
 
 const userInfoNew = new UserInfo(".profile__title", ".profile__description");
-const profileEditPopup = new PopupWithForm("#edit-popup", (data) => {
+const profileEditPopup = new PopupWithForm("#profile-edit-popup", (data) => {
   userInfoNew.setUserInfo(data);
   profileEditPopup.close();
 });
@@ -40,12 +44,12 @@ profileEditPopup.setEventListeners();
 
 /* --------------------------- Popup Preview Image -------------------------- */
 
-const imagePopUp = new PopUpWithImage("#image-preview-popup", handleImageClick);
+const imagePopUp = new PopUpWithImage("#preview-image-popup", handleImageClick);
 imagePopUp.setEventListeners();
 
 /* --------------------------- Popup Add Card -------------------------- */
 
-const addCardPopUp = new PopupWithForm("#add-card-popup", handleFormSubmit);
+const addCardPopUp = new PopupWithForm("#add-new-card-popup", handleFormSubmit);
 addCardPopUp.setEventListeners();
 
 /* -------------------------------------------------------------------------- */
@@ -60,7 +64,7 @@ const cardSection = new Section(
       cardSection.addItem(cardEl);
     },
   },
-  "#cards__list"
+  ".cards__list"
 );
 cardSection.renderItems();
 
