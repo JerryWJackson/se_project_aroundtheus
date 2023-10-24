@@ -35,7 +35,7 @@ addFormValidator.enableValidation();
 
 /* ----------------------------- Edit Popup Form Profile---------------------- */
 
-const userInfoNew = new UserInfo(".profile__title", ".profile__description");
+const userInfoNew = new UserInfo("#name", "#description");
 const profileEditPopup = new PopupWithForm("#profile-edit-popup", (data) => {
   userInfoNew.setUserInfo(data);
   profileEditPopup.close();
