@@ -74,7 +74,6 @@ cardSection.renderItems();
 /* -------------------------------------------------------------------------- */
 
 function renderCard(data) {
-  console.log(data);
   const card = new Card(data, "#card-template", handleImageClick);
   return card.getView();
 }
@@ -84,12 +83,10 @@ function handleImageClick(data) {
 }
 
 function handleFormSubmit(data) {
-  console.log(data)
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
   profileEditPopup.close();
   addCardPopUp.close();
-  return cardValue;
 }
 
 /* -------------------------------------------------------------------------- */
