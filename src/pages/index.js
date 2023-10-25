@@ -1,8 +1,6 @@
 import {
   validationSettings,
-  profileEditPopupForm,
   profileEditButton,
-  addNewCardPopupForm,
   addNewCardButton,
   initialCards,
 } from "../utils/constants.js";
@@ -22,7 +20,7 @@ const formValidators = {}
 
 // enable validation
 const enableValidation = (validationSettings) => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'))
+  const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
   formList.forEach((formElement) => {
     const validator = new FormValidator(validationSettings, formElement)
     const formName = formElement.id
@@ -32,12 +30,6 @@ const enableValidation = (validationSettings) => {
 };
 
 enableValidation(validationSettings);
-
-
-console.log(formValidators)
-
-formValidators["profile-edit-popup-form"].resetValidation();
-formValidators["create-place-popup-form"].resetValidation();
 
 /* -------------------------------------------------------------------------- */
 /*                               Popup                                        */
@@ -115,6 +107,7 @@ function handleAddCardFormSubmit(data) {
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfoNew.getUserInfo();
   profileEditPopup.setInputValues(profileData);
+  formValidators["profile-edit-popup-form"].resetValidation();
   profileEditPopup.open();
 });
 
