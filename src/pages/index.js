@@ -38,21 +38,23 @@ addFormValidator.enableValidation();
 
 /* ----------------------------- Edit Popup Form Profile---------------------- */
 
-const userInfoNew = new UserInfo(".profile__name", ".profile__description");
-const profileEditPopup = new PopupWithForm("#profile-edit-popup", (data) => {
-  userInfoNew.setUserInfo(data);
-  profileEditPopup.close();
-});
+const profileEditPopup = new PopupWithForm(
+  "#profile-edit-popup",
+  handleEditProfileFormSubmit
+);
 profileEditPopup.setEventListeners();
 
 /* --------------------------- Popup Preview Image -------------------------- */
 
-const imagePopUp = new PopUpWithImage("#preview-image-popup", handleImageClick);
+const imagePopUp = new PopUpWithImage("#preview-image-popup");
 imagePopUp.setEventListeners();
 
 /* --------------------------- Popup Add Card -------------------------- */
 
-const addCardPopUp = new PopupWithForm("#add-new-card-popup", handleFormSubmit);
+const addCardPopUp = new PopupWithForm(
+  "#add-new-card-popup",
+  handleAddCardFormSubmit
+);
 addCardPopUp.setEventListeners();
 
 /* -------------------------------------------------------------------------- */
@@ -72,6 +74,8 @@ const cardSection = new Section(
 );
 cardSection.renderItems();
 
+const userInfoNew = new UserInfo(".profile__name", ".profile__description");
+
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -86,10 +90,14 @@ function handleImageClick(data) {
   imagePopUp.open(data);
 }
 
-function handleFormSubmit(data) {
+function handleEditProfileFormSubmit(data) {
+  userInfoNew.setUserInfo(data);
+  profileEditPopup.close();
+}
+
+function handleAddCardFormSubmit(data) {
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
-  profileEditPopup.close();
   addCardPopUp.close();
 }
 
@@ -99,8 +107,7 @@ function handleFormSubmit(data) {
 
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfoNew.getUserInfo();
-  popupProfileEditNameInput.value = profileData.name;
-  popupProfileEditDescriptionInput.value = profileData.job;
+  profileEditPopup.setInputValues(profileData);
   profileEditPopup.open();
 });
 
