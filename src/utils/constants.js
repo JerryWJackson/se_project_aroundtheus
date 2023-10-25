@@ -63,7 +63,7 @@ export const popupProfileEditCloseButton = profileEditPopup.querySelector(
 export const addNewCardButton = document.querySelector("#add-new-card-button");
 export const popupAddNewCardNameInput = document.querySelector("#title");
 export const popupAddNewCardImageLinkInput =
-  document.querySelector("#image-link");
+  document.querySelector("#popup");
 export const popupAddNewCardCloseButton = addNewCardPopup.querySelector(
   "#add-new-card-popup-close-button"
 );
