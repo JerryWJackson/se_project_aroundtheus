@@ -11,6 +11,7 @@ export default class PopupWithImage extends Popup {
   }
 
   open(data) {
+    console.log(data)
     this._previewImage.src = data.src;
     this._previewImage.alt = data.location;
     this._previewText.textContent = data.location;

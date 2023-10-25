@@ -40,7 +40,6 @@ addFormValidator.enableValidation();
 
 const userInfoNew = new UserInfo(".profile__name", ".profile__description");
 const profileEditPopup = new PopupWithForm("#profile-edit-popup", (data) => {
-  console.log(data);
   userInfoNew.setUserInfo(data);
   profileEditPopup.close();
 });
@@ -82,6 +81,7 @@ function renderCard(data) {
 }
 
 function handleImageClick(data) {
+  console.log(data);
   imagePopUp.open(data);
 }
 

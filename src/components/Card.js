@@ -6,7 +6,7 @@ export default class Card {
     this._handleImageClick = handleImageClick;
     this._data = {
       location: this._location,
-      src: this._link,
+      link: this._link,
     };
   }
 
@@ -50,9 +50,9 @@ export default class Card {
     this._cardImage = this._cardElement.querySelector(".card__image");
     this.cardLocation = this._cardElement.querySelector(".card__location");
     // get card view
-    this._cardImage.src = this._data.src;
-    this._cardImage.alt = this._data.location;
-    this.cardLocation.textContent = this._data.location;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._location;
+    this.cardLocation.textContent = this._location;
     //set event listeners
     this._setEventListeners();
     //return the card
