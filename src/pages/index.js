@@ -1,8 +1,6 @@
 import {
   validationSettings,
   profileEditPopupForm,
-  popupProfileEditNameInput,
-  popupProfileEditDescriptionInput,
   profileEditButton,
   addNewCardPopupForm,
   addNewCardButton,
@@ -20,17 +18,26 @@ import "./index.css";
 /*                                 Form add and Validation                    */
 /* -------------------------------------------------------------------------- */
 
-const editFormValidator = new FormValidator(
-  validationSettings,
-  profileEditPopupForm
-);
-const addFormValidator = new FormValidator(
-  validationSettings,
-  addNewCardPopupForm
-);
+const formValidators = {}
 
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
+// enable validation
+const enableValidation = (validationSettings) => {
+  const formList = Array.from(document.querySelectorAll('.popup__form'))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(validationSettings, formElement)
+    const formName = formElement.id
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+};
+
+enableValidation(validationSettings);
+
+
+console.log(formValidators)
+
+formValidators["profile-edit-popup-form"].resetValidation();
+formValidators["create-place-popup-form"].resetValidation();
 
 /* -------------------------------------------------------------------------- */
 /*                               Popup                                        */
@@ -112,6 +119,6 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addNewCardButton.addEventListener("click", () => {
-  addFormValidator.toggleButtonState();
+  formValidators["create-place-popup-form"].toggleButtonState();
   addCardPopUp.open();
 });
