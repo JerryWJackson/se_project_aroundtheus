@@ -25,6 +25,25 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
   }
 
+  open() {
+    // this only fires on the profile edit form to pull existing values
+    if (this._popupForm.id == "profile-edit-popup-form") {
+      const existingProfileValues = {
+        name: document.querySelector(".profile__name").innerText,
+        occupation: document.querySelector(".profile__description").innerText,
+      };
+      this._inputItems.forEach((inputItem) => {
+        if (inputItem.id == "description") {
+          inputItem.value = existingProfileValues.occupation;
+        }
+        if (inputItem.id == "name") {
+          inputItem.value = existingProfileValues.name;
+        }
+      });
+    }
+    super.open();
+  }
+
   close() {
     this._popupForm.reset();
     super.close();

@@ -1,8 +1,8 @@
 import {
   validationSettings,
   profileEditPopupForm,
-  profileName,
-  profileDescription,
+  popupProfileEditNameInput,
+  popupProfileEditDescriptionInput,
   profileEditButton,
   addNewCardPopupForm,
   addNewCardButton,
@@ -35,8 +35,9 @@ addFormValidator.enableValidation();
 
 /* ----------------------------- Edit Popup Form Profile---------------------- */
 
-const userInfoNew = new UserInfo("#name", "#description");
+const userInfoNew = new UserInfo(".profile__name", ".profile__description");
 const profileEditPopup = new PopupWithForm("#profile-edit-popup", (data) => {
+  console.log(data)
   userInfoNew.setUserInfo(data);
   profileEditPopup.close();
 });
@@ -74,6 +75,7 @@ cardSection.renderItems();
 
 function renderCard(data) {
   const card = new Card(data, "#card-template", handleImageClick);
+  console.log(card);
   return card.getView();
 }
 
@@ -95,8 +97,8 @@ function handleFormSubmit(data) {
 
 profileEditButton.addEventListener("click", () => {
   const profileData = userInfoNew.getUserInfo();
-  profileName.value = profileData.name;
-  profileDescription.value = profileData.job;
+  popupProfileEditNameInput.value = profileData.name;
+  popupProfileEditDescriptionInput.value = profileData.job;
   profileEditPopup.open();
 });
 

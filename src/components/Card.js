@@ -4,7 +4,12 @@ export default class Card {
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._data = {
+      location: this._name,
+      src: this._link,
+    }
   }
+
 
   _setEventListeners() {
     // card__like-button
@@ -17,7 +22,7 @@ export default class Card {
     });
 
     this._cardImage.addEventListener("click", () => {
-      this._handleImageClick(this._name, this._link);
+      this._handleImageClick(this._data);
     });
   }
 
@@ -46,9 +51,9 @@ export default class Card {
     this._cardImage = this._cardElement.querySelector(".card__image");
     this.cardLocation = this._cardElement.querySelector(".card__location");
     // get card view
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
-    this.cardLocation.textContent = this._name;
+    this._cardImage.src = this._data.src;
+    this._cardImage.alt = this._data.location;
+    this.cardLocation.textContent = this._data.location;
     //set event listeners
     this._setEventListeners();
     //return the card
