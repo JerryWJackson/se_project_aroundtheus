@@ -62,8 +62,7 @@ export const popupProfileEditCloseButton = profileEditPopup.querySelector(
 );
 export const addNewCardButton = document.querySelector("#add-new-card-button");
 export const popupAddNewCardNameInput = document.querySelector("#title");
-export const popupAddNewCardImageLinkInput =
-  document.querySelector("#popup");
+export const popupAddNewCardImageLinkInput = document.querySelector("#popup");
 export const popupAddNewCardCloseButton = addNewCardPopup.querySelector(
   "#add-new-card-popup-close-button"
 );
@@ -78,4 +77,3 @@ export const validationSettings = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 };
-

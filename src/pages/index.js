@@ -14,7 +14,7 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopUpWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
-import "./index.css"
+import "./index.css";
 
 /* -------------------------------------------------------------------------- */
 /*                                 Form add and Validation                    */
@@ -24,7 +24,10 @@ const editFormValidator = new FormValidator(
   validationSettings,
   profileEditPopupForm
 );
-const addFormValidator = new FormValidator(validationSettings, addNewCardPopupForm);
+const addFormValidator = new FormValidator(
+  validationSettings,
+  addNewCardPopupForm
+);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
@@ -37,7 +40,7 @@ addFormValidator.enableValidation();
 
 const userInfoNew = new UserInfo(".profile__name", ".profile__description");
 const profileEditPopup = new PopupWithForm("#profile-edit-popup", (data) => {
-  console.log(data)
+  console.log(data);
   userInfoNew.setUserInfo(data);
   profileEditPopup.close();
 });

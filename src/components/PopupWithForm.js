@@ -35,10 +35,10 @@ export default class PopupWithForm extends Popup {
       this._inputItems.forEach((inputItem) => {
         if (inputItem.id == "description") {
           inputItem.value = existingProfileValues.occupation;
-        };
+        }
         if (inputItem.id == "name") {
           inputItem.value = existingProfileValues.name;
-        };
+        }
       });
     }
     super.open();

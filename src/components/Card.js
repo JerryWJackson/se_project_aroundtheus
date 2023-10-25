@@ -7,9 +7,8 @@ export default class Card {
     this._data = {
       location: this._name,
       src: this._link,
-    }
+    };
   }
-
 
   _setEventListeners() {
     // card__like-button
