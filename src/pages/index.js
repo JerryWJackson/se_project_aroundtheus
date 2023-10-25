@@ -63,6 +63,7 @@ const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
+      console.log(item);
       const cardEl = renderCard(item);
       cardSection.addItem(cardEl);
     },
