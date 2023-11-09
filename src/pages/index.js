@@ -3,6 +3,7 @@ import {
   profileEditButton,
   addNewCardButton,
   initialCards,
+  apiOptions
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -10,6 +11,7 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopUpWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
+import Api from "../components/API.js"
 import "./index.css";
 
 /* -------------------------------------------------------------------------- */
@@ -115,3 +117,13 @@ addNewCardButton.addEventListener("click", () => {
   formValidators["create-place-popup-form"].toggleButtonState();
   addCardPopUp.open();
 });
+
+
+// The code below all 'works'; when you start studying tomorrow work through it again and continue.
+const api = new Api(apiOptions);
+
+const avatarLink = new URL('https://github.com/JerryWJackson/se_project_aroundtheus/blob/create-rest-api_sprint9/src/images/jwj-avatar.png');
+api.editUserAvatar(avatarLink).then((res)=> console.log(res));
+api.editUser('Jerry W Jackson', 'Renaissance Man').then((res)=> console.log(res));
+const cardsInitial = api.getInitialCards().then((res) => console.log(res));
+console.log(cardsInitial);

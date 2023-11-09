@@ -70,6 +70,14 @@ export const previewImagepopupCloseButton = previewImagePopup.querySelector(
   "#preview-image-popup-close-button"
 );
 
+export const apiOptions = {
+  baseUrl: 'https://around-api.en.tripleten-services.com/v1',
+  defaultHeaders: {
+    "authorization": "ef1674b3-2f84-46ba-ade1-b5216183ce24",
+    "Content-Type": "application/json",
+  }
+}
+
 export const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: ".popup__input",
