@@ -50,10 +50,9 @@ export const cardTemplate =
 
 // DOM Node Elements
 export const profileEditButton = document.querySelector("#profile-edit-button");
-export const profileName = document.querySelector(".profile__name");
-export const profileDescription = document.querySelector(
-  ".profile__description"
-);
+export const profileName = ".profile__name";
+export const profileDescription = ".profile__description";
+export const profileAvatar = ".profile__avatar-image";
 export const popupProfileEditNameInput = document.querySelector("#name");
 export const popupProfileEditDescriptionInput =
   document.querySelector("#description");

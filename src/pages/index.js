@@ -1,5 +1,8 @@
 import {
   validationSettings,
+  profileName,
+  profileDescription,
+  profileAvatar,
   profileEditButton,
   addNewCardButton,
   initialCards,
@@ -75,7 +78,7 @@ const cardSection = new Section(
 );
 cardSection.renderItems();
 
-const userInfoNew = new UserInfo(".profile__name", ".profile__description");
+const userInfoNew = new UserInfo(profileName, profileDescription, profileAvatar);
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
@@ -122,8 +125,7 @@ addNewCardButton.addEventListener("click", () => {
 // The code below all 'works'; when you start studying tomorrow work through it again and continue.
 const api = new Api(apiOptions);
 
-const avatarLink = new URL('https://github.com/JerryWJackson/se_project_aroundtheus/blob/create-rest-api_sprint9/src/images/jwj-avatar.png');
-api.editUserAvatar(avatarLink).then((res)=> console.log(res));
-api.editUser('Jerry W Jackson', 'Renaissance Man').then((res)=> console.log(res));
+// const avatarLink = new URL('https://github.com/JerryWJackson/se_project_aroundtheus/blob/create-rest-api_sprint9/src/images/jwj-avatar.png');
+// api.editUserAvatar(avatarLink).then((res)=> console.log(res));
+// api.editUser('Jerry W Jackson', 'Renaissance Man').then((res)=> console.log(res));
 const cardsInitial = api.getInitialCards().then((res) => console.log(res));
-console.log(cardsInitial);
