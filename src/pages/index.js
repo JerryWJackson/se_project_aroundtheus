@@ -71,38 +71,18 @@ addCardPopUp.setEventListeners();
 /*                                   Section                                  */
 /* -------------------------------------------------------------------------- */
 
-// Lets temporarily empty the cards db before creating the section to see what's misfiring
-// const tempIds = api.fetchCards();
-
-// async function iterate(tempIds) {
-//   for (let i = 0; i <= 30; i++){
-//     await console.log(tempIds[i]._id)
-//     await api.deleteCard(tempIds[i]._id);
-//   }
-//   console.log('Remaining cards ', api.fetchCards());
-// }
-
-// iterate(tempIds);
-
-const idObject = api.fetchCardIdObject();
-console.log(idObject)
-function callBackTest(_id) {
-  api.deleteCard(id)
-};
-
-idObject.Array.forEach(callBackTest);
-// const cardSection = new Section(
-//   {
-//     items: initialCards,
-//     renderer: async (item) => {
-//       console.log(item);
-//       const cardEl = await api.addCard(item);
-//       // console.log(cardEl);
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: async (item) => {
+      console.log(item);
+      const cardEl = await api.addCard(item);
+      console.log(cardEl);
 //       cardSection.addItem(cardEl);
-//     },
-//   },
+    },
+  },
 //   ".cards__list"
-// );
+);
 // cardSection.renderItems();
 
 const userInfoNew = new UserInfo(profileName, profileDescription, profileAvatar);
@@ -152,5 +132,7 @@ addNewCardButton.addEventListener("click", () => {
 // The code below all 'works'; when you start studying tomorrow work through it again and continue.
 // const avatarLink = new URL('https://github.com/JerryWJackson/se_project_aroundtheus/blob/create-rest-api_sprint9/src/images/jwj-avatar.png');
 // api.editUserAvatar(avatarLink).then((res)=> console.log(res));
-api.editUser('Jerry W Jackson', 'Renaissance Man').then((res)=> console.log(res));
-api.fetchCards().then((res) => console.log(res));
+// api.editUser('Jerry W Jackson', 'Renaissance Man').then((res)=> console.log(res));
+
+api.fetchCards().then((res) => console.log('fetchCards returned', res));
+// api.clearAllCards();
