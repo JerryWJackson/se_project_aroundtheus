@@ -53,6 +53,7 @@ export const profileEditButton = document.querySelector("#profile-edit-button");
 export const profileName = ".profile__name";
 export const profileDescription = ".profile__description";
 export const profileAvatar = ".profile__avatar-image";
+export const avatarImage = document.querySelector('.profile__avatar-image')
 export const popupProfileEditNameInput = document.querySelector("#name");
 export const popupProfileEditDescriptionInput =
   document.querySelector("#description");

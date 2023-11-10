@@ -5,6 +5,7 @@ import {
   profileAvatar,
   profileEditButton,
   addNewCardButton,
+  avatarImage,
   initialCards,
   apiOptions
 } from "../utils/constants.js";
@@ -140,6 +141,11 @@ profileEditButton.addEventListener("click", () => {
 addNewCardButton.addEventListener("click", () => {
   formValidators["create-place-popup-form"].toggleButtonState();
   addCardPopUp.open();
+});
+
+avatarImage.addEventListener("click", () => {
+  formValidators["change-profile-avatar-popup"].toggleButtonState();
+  changeProfileAvatarPopUp.open();
 });
 
 
