@@ -102,12 +102,20 @@ export default class Api {
       });
   }
 
+  async fetchCardIdObject() {
+    await this.fetchCards().then((res) => {
+      let idObject = res;
+      console.log('idObject is ', idObject);
+      return idObject
+    })
+  }
+
   addCard(card) {
     return fetch(`${this._cardRoute}`, {
       method: "POST",
       headers: this._defaultHeaders,
       body: JSON.stringify({
-        'location': card.location,
+        'name': card.location,
         'link': card.link
       }),
     })
@@ -122,6 +130,7 @@ export default class Api {
         console.error(err);
       });
   }
+
 
   deleteCard(cardId) {
     return fetch(`${this._cardRoute}/${cardId}`, {
@@ -176,6 +185,8 @@ export default class Api {
         console.error(err);
       });
   }
+
+
 
   // other methods for working with the API
 }

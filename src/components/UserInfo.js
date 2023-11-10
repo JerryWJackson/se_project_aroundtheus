@@ -11,7 +11,7 @@ export default class UserInfo {
       occupation: this._occupation.textContent,
       avatar: this._avatar.src
     };
-    console.log(userData);
+    // console.log(userData);
     return userData;
   }
 
