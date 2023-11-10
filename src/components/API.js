@@ -1,5 +1,5 @@
 export default class Api {
-  constructor({baseUrl, defaultHeaders}) {
+  constructor({ baseUrl, defaultHeaders }) {
     // constructor body
     this._baseUrl = baseUrl;
     this._defaultHeaders = defaultHeaders;
@@ -14,7 +14,7 @@ export default class Api {
     })
       .then((res) => {
         if (res.ok) {
-          console.log('Got initial cards');
+          console.log("Got initial cards");
           return res.json();
         }
         // if the server returns an error, reject the promise
@@ -49,8 +49,8 @@ export default class Api {
       method: "PATCH",
       headers: this._defaultHeaders,
       body: JSON.stringify({
-        'name': name,
-        'about': occupation
+        name: name,
+        about: occupation,
       }),
     })
       .then((res) => {
@@ -69,7 +69,7 @@ export default class Api {
       method: "PATCH",
       headers: this._defaultHeaders,
       body: JSON.stringify({
-        'avatar': link
+        avatar: link,
       }),
     })
       .then((res) => {
@@ -102,12 +102,38 @@ export default class Api {
       });
   }
 
-  async fetchCardIdObject() {
-    await this.fetchCards().then((res) => {
-      let idObject = res;
-      console.log('idObject is ', idObject);
-      return idObject
+  clearAllCards() {
+    return fetch(`${this._cardRoute}`, {
+      method: "GET",
+      headers: this._defaultHeaders,
     })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        data.forEach((item) => {
+          console.log("deleting card with id", item._id);
+          this.deleteCard(item._id);
+        });
+        console.log("all cards should be deleted");
+      });
+  }
+
+  async fetchCardIdObject() {
+    await this.fetchCards().then((data) => {
+      let idObject = data;
+      return idObject;
+    });
+  }
+
+  async deleteAllCards(idObject) {
+    console.log("type of idObject is", typeof idObject);
+
+    const map = new Map(idObject);
+    console.log(map);
+    // await idObject.forEach((item) => {
+    //   console.log('item is ', item);
+    //   api.deleteCard(item._id);
+    //   });
   }
 
   addCard(card) {
@@ -115,8 +141,8 @@ export default class Api {
       method: "POST",
       headers: this._defaultHeaders,
       body: JSON.stringify({
-        'name': card.location,
-        'link': card.link
+        name: card.location,
+        link: card.link,
       }),
     })
       .then((res) => {
@@ -130,7 +156,6 @@ export default class Api {
         console.error(err);
       });
   }
-
 
   deleteCard(cardId) {
     return fetch(`${this._cardRoute}/${cardId}`, {
@@ -185,8 +210,6 @@ export default class Api {
         console.error(err);
       });
   }
-
-
 
   // other methods for working with the API
 }

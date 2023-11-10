@@ -118,7 +118,7 @@
             type="url"
             name="link"
             class="popup__input"
-            id="link"
+            id="location-link"
             placeholder="Image Link"
             required
           />
@@ -142,6 +142,51 @@
         ></button>
         <img src="#" alt="" class="popup__preview-image" id="preview-image" />
         <p class="popup__preview-text"></p>
+      </div>
+    </div>
+
+    <div class="popup" id="confirm-image-delete-popup">
+      <div class="popup__container">
+        <h2 class="popup__heading">Are you sure?</h2>
+        <button
+          class="popup__close"
+          id="confirm-image-delete-popup-close-button"
+        ></button>
+        <p class="popup__confirm-delete-text"></p>
+        <button
+          class="popup__button popup__button_disabled"
+          type="submit"
+          disabled
+        >
+          Yes
+        </button>
+      </div>
+    </div>
+
+    <div class="popup" id="change-profile-avatar-popup">
+      <div class="popup__container">
+        <button
+          class="popup__close"
+          id="change-profile-avatar-popup-close-button"
+        ></button>
+        <h2 class="popup__heading">Change profile avatar</h2>
+        <form class="popup__form" id="change-profile-avatar-form"></form>
+        <input
+          type="url"
+          name="link"
+          class="popup__input"
+          id="avatar-link"
+          placeholder="Image Link"
+          required
+        />
+        <span class="popup__error" id="location-error"></span>
+        <button
+          class="popup__button popup__button_disabled"
+          type="submit"
+          disabled
+        >
+          Save
+        </button>
       </div>
     </div>
 

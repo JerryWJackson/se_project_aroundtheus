@@ -16,6 +16,7 @@ import PopUpWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import Api from "../components/API.js"
 import "./index.css";
+import Popup from "../components/Popup.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                 Form add and Validation                    */
@@ -66,6 +67,19 @@ const addCardPopUp = new PopupWithForm(
   handleAddCardFormSubmit
 );
 addCardPopUp.setEventListeners();
+
+/* ---------------------------Popup Confirm Delete--------------------------- */
+
+const confirmDeletePopup = new Popup("#confirm-image-delete-popup");
+confirmDeletePopup.setEventListeners();
+
+/* ------------------------Change Profile Avatar Popup----------------------- */
+
+const changeProfileAvatarPopUp = new PopupWithForm(
+  "#change-profile-avatar-popup",
+  handleAddCardFormSubmit
+);
+changeProfileAvatarPopUp.setEventListeners();
 
 /* -------------------------------------------------------------------------- */
 /*                                   Section                                  */
