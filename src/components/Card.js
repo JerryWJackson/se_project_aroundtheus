@@ -4,6 +4,9 @@ export default class Card {
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._confirmDeleteImagePopup = document.querySelector(
+      "#confirm-image-delete-popup"
+    );
     this._data = {
       location: this._location,
       link: this._link,
@@ -29,9 +32,17 @@ export default class Card {
     this._cardLikeButton.classList.toggle("card__like-button_active");
   }
 
+  _confirmDelete() {
+    this._confirmDeleteImagePopup.open();
+    return isConfirmed;
+  }
+
   _handleDeleteCard() {
-    this._cardElement.remove();
-    this._cardElement = null;
+    const isConfirmed = this._confirmDelete();
+    if (isConfirmed) {
+      this._cardElement.remove();
+      this._cardElement = null;
+    }
   }
 
   _getTemplate() {

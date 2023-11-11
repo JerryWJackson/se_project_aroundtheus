@@ -71,8 +71,8 @@ export const previewImagepopupCloseButton = previewImagePopup.querySelector(
 );
 
 export const apiOptions = {
-  baseUrl: 'https://around-api.en.tripleten-services.com/v1',
-  defaultHeaders: {
+  "baseUrl": 'https://around-api.en.tripleten-services.com/v1',
+  "defaultHeaders": {
     "authorization": "ef1674b3-2f84-46ba-ade1-b5216183ce24",
     "Content-Type": "application/json",
   }

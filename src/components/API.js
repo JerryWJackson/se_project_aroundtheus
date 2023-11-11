@@ -1,24 +1,37 @@
+import { initialCards, apiOptions } from "../utils/constants.js";
+
 export default class Api {
-  constructor({ baseUrl, defaultHeaders }) {
+  constructor() {
     // constructor body
-    this._baseUrl = baseUrl;
-    this._defaultHeaders = defaultHeaders;
+    this._baseUrl = apiOptions.baseUrl;
+    this._headers = apiOptions.defaultHeaders;
     this._userRoute = `${this._baseUrl}/users/me`;
     this._cardRoute = `${this._baseUrl}/cards`;
+    this._checkResponse = (res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    };
+  }
+
+  async _request(url, options) {
+    console.log(options);
+    return await fetch(url, options).then(this._checkResponse);
   }
 
   getInitialCards() {
-    return fetch(this._cardRoute, {
-      method: "GET",
-      headers: this._defaultHeaders,
-    })
-      .then((res) => {
-        if (res.ok) {
-          console.log("Got initial cards");
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
+    initialCards
+      .forEach((card) => {
+        return this._request(this._userRoute, {
+          method: "GET",
+          headers: this._defaultHeaders,
+          body: JSON.stringify({
+            name: card.location,
+            link: card.link,
+          }),
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -28,86 +41,53 @@ export default class Api {
   // User route methods
 
   fetchUser() {
-    return fetch(this._userRoute, {
+    return this._request(this._userRoute, {
       method: "GET",
-      headers: this._defaultHeaders,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      headers: this._headers,
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   editUser(name, occupation) {
-    return fetch(this._userRoute, {
+    return this._request(this._userRoute, {
       method: "PATCH",
-      headers: this._defaultHeaders,
+      headers: this._headers,
       body: JSON.stringify({
         name: name,
         about: occupation,
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).catch((err) => {
+      console.error(err);
+    });
   }
   editUserAvatar(link) {
-    return fetch(`${this._userRoute}/avatar`, {
+    return this._request(`${this._userRoute}/avatar`, {
       method: "PATCH",
-      headers: this._defaultHeaders,
+      headers: this._headers,
       body: JSON.stringify({
         avatar: link,
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   // Card route methods
   fetchCards() {
-    return fetch(`${this._cardRoute}`, {
+    return this._request(`${this._cardRoute}`, {
       method: "GET",
-      headers: this._defaultHeaders,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      headers: this._headers,
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   clearAllCards() {
-    return fetch(`${this._cardRoute}`, {
+    return this._request(`${this._cardRoute}`, {
       method: "GET",
-      headers: this._defaultHeaders,
+      headers: this._headers,
     })
-      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         data.forEach((item) => {
@@ -137,78 +117,46 @@ export default class Api {
   }
 
   addCard(card) {
-    return fetch(`${this._cardRoute}`, {
+    return this._request(`${this._cardRoute}`, {
       method: "POST",
-      headers: this._defaultHeaders,
+      headers: this._headers,
       body: JSON.stringify({
         name: card.location,
         link: card.link,
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._cardRoute}/${cardId}`, {
+    return this._request(`${this._cardRoute}/${cardId}`, {
       method: "DELETE",
-      headers: this._defaultHeaders,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      headers: this._headers,
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   likeCard(cardId) {
-    return fetch(`${this._cardRoute}/${cardId}/likes`, {
+    return this._request(`${this._cardRoute}/${cardId}/likes`, {
       method: "PUT",
-      headers: this._defaultHeaders,
+      headers: this._headers,
       body: JSON.stringify({
-        // how do I change a boolean in a PUT body?
+        isLiked: true
       }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   dislikeCard(cardId) {
-    return fetch(`${this._cardRoute}/${cardId}/likes`, {
+    return this._request(`${this._cardRoute}/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._defaultHeaders,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      headers: this._headers,
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 
   // other methods for working with the API

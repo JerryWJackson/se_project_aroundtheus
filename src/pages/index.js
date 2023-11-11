@@ -28,12 +28,15 @@ const formValidators = {}
 // enable validation
 const enableValidation = (validationSettings) => {
   const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
+  console.log(formList)
   formList.forEach((formElement) => {
+    console.log(formElement)
     const validator = new FormValidator(validationSettings, formElement)
     const formName = formElement.id
     formValidators[formName] = validator;
    validator.enableValidation();
   });
+  console.log(formValidators)
 };
 
 enableValidation(validationSettings);
@@ -71,8 +74,8 @@ addCardPopUp.setEventListeners();
 
 /* ---------------------------Popup Confirm Delete--------------------------- */
 
-const confirmDeletePopup = new Popup("#confirm-image-delete-popup");
-confirmDeletePopup.setEventListeners();
+// const confirmDeletePopup = new Popup("#confirm-image-delete-popup");
+// confirmDeletePopup.setEventListeners();
 
 /* ------------------------Change Profile Avatar Popup----------------------- */
 
@@ -144,7 +147,7 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 avatarImage.addEventListener("click", () => {
-  formValidators["change-profile-avatar-popup"].toggleButtonState();
+  formValidators["change-profile-avatar-popup-form"].toggleButtonState();
   changeProfileAvatarPopUp.open();
 });
 
@@ -154,5 +157,8 @@ avatarImage.addEventListener("click", () => {
 // api.editUserAvatar(avatarLink).then((res)=> console.log(res));
 // api.editUser('Jerry W Jackson', 'Renaissance Man').then((res)=> console.log(res));
 
-api.fetchCards().then((res) => console.log('fetchCards returned', res));
 // api.clearAllCards();
+const aCard = { location: 'Fall Creek Falls', link: 'https://unsplash.com/photos/waterfalls-in-the-middle-of-forest-during-daytime-mMkmDQsEb6A'}
+// api.addCard(aCard);
+// api.getInitialCards().then((res) => console.log('fetchCards returned', res));
+api.fetchCards().then((res) => console.log('fetchCards returned', res));
