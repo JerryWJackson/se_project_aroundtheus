@@ -1,22 +1,23 @@
 import {
+  apiOptions,
   validationSettings,
+  formList,
   profileName,
   profileDescription,
   profileAvatar,
   profileEditButton,
   addNewCardButton,
   avatarImage,
-  apiOptions,
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopUpWithImage from "../components/PopupWithImage.js";
+import Popup from "../components/Popup.js";
 import Section from "../components/Section.js";
 import Api from "../components/API.js";
 import "./index.css";
-import Popup from "../components/Popup.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                 Form add and Validation                    */
@@ -26,15 +27,14 @@ const formValidators = {};
 
 // enable validation
 const enableValidation = (validationSettings) => {
-  const formList = Array.from(
-    document.querySelectorAll(validationSettings.formSelector)
-  );
   formList.forEach((formElement) => {
     const validator = new FormValidator(validationSettings, formElement);
     const formName = formElement.id;
     formValidators[formName] = validator;
     validator.enableValidation();
   });
+  console.log(formList);
+  console.log(formValidators);
 };
 
 enableValidation(validationSettings);
@@ -44,6 +44,10 @@ enableValidation(validationSettings);
 /* -------------------------------------------------------------------------- */
 
 const api = new Api(apiOptions);
+
+
+const profileData = api.fetchUserInfo()
+
 
 /* -------------------------------------------------------------------------- */
 /*                                   Section                                  */
@@ -99,8 +103,9 @@ addCardPopUp.setEventListeners();
 
 /* ---------------------------Popup Confirm Delete--------------------------- */
 
-// const confirmDeletePopup = new Popup("#confirm-image-delete-popup");
-// confirmDeletePopup.setEventListeners();
+const confirmDeletePopup = new PopupWithForm("#confirm-image-delete-popup", handleConfirmDeleteFormSubmit);
+console.log(confirmDeletePopup);
+confirmDeletePopup.setEventListeners();
 
 /* ------------------------Change Profile Avatar Popup----------------------- */
 
@@ -110,14 +115,17 @@ const changeProfileAvatarPopUp = new PopupWithForm(
 );
 changeProfileAvatarPopUp.setEventListeners();
 
-
-
+console.log('profileData is', profileData);
+console.log('name is', profileData.name);
+console.log('occupation is', profileData.about);
+console.log('avatar link is', profileData.avatar);
 const userInfoNew = new UserInfo(
   profileName,
   profileDescription,
   profileAvatar
 );
-
+userInfoNew.setUserInfo(profileData.name, profileData.about);
+userInfoNew.setUserAvatar(profileData.avatar);
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -134,6 +142,8 @@ function handleImageClick(data) {
 
 function handleEditProfileFormSubmit(data) {
   userInfoNew.setUserInfo(data);
+  console.log('userInfo', userInfoNew);
+  api.editUserInfo(data.name, data.occupation);
   profileEditPopup.close();
 }
 
@@ -141,6 +151,10 @@ function handleAddCardFormSubmit(data) {
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
   addCardPopUp.close();
+}
+
+function handleConfirmDeleteFormSubmit() {
+  console.log('it works');
 }
 
 /* -------------------------------------------------------------------------- */

@@ -6,7 +6,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._confirmDeleteImagePopup = document.querySelector(
-      ".confirm-image-delete-popup"
+      "#confirm-image-delete-popup"
     );
     this._data = {
       location: this._location,

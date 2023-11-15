@@ -25,17 +25,17 @@
           <img
             class="profile__avatar-image"
             src="<%=require('./images/jwj-avatar.png')%>"
-            alt="Jacques Cousteau avatar image"
+            alt="avatar image"
           />
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name"></h1>
             <button
               type="button"
               class="profile__edit-button"
               id="profile-edit-button"
               aria-label
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button
             type="button"
@@ -148,18 +148,13 @@
     <div class="popup" id="confirm-image-delete-popup">
       <div class="popup__container">
         <h2 class="popup__heading">Are you sure?</h2>
-        <button
-          class="popup__close"
-          id="confirm-image-delete-popup-close-button"
-        ></button>
-        <p class="popup__confirm-delete-text"></p>
-        <button
-          class="popup__button popup__button_disabled"
-          type="submit"
-          disabled
-        >
-          Yes
-        </button>
+        <form class="popup__form" id="confirm-image-delete-popup-form">
+          <button
+            class="popup__close"
+            id="confirm-image-delete-popup-close-button"
+          ></button>
+          <button class="popup__button" type="submit">Yes</button>
+        </form>
       </div>
     </div>
 
