@@ -1,11 +1,12 @@
 export default class Card {
-  constructor({ location, link }, cardSelector, handleImageClick) {
-    this._location = location;
+  constructor({ name, link, _id }, cardSelector, handleImageClick) {
+    this._location = name;
     this._link = link;
+    this._cardId = _id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._confirmDeleteImagePopup = document.querySelector(
-      "#confirm-image-delete-popup"
+      ".confirm-image-delete-popup"
     );
     this._data = {
       location: this._location,

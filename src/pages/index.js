@@ -6,8 +6,7 @@ import {
   profileEditButton,
   addNewCardButton,
   avatarImage,
-  initialCards,
-  apiOptions
+  apiOptions,
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -15,7 +14,7 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopUpWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
-import Api from "../components/API.js"
+import Api from "../components/API.js";
 import "./index.css";
 import Popup from "../components/Popup.js";
 
@@ -23,20 +22,19 @@ import Popup from "../components/Popup.js";
 /*                                 Form add and Validation                    */
 /* -------------------------------------------------------------------------- */
 
-const formValidators = {}
+const formValidators = {};
 
 // enable validation
 const enableValidation = (validationSettings) => {
-  const formList = Array.from(document.querySelectorAll(validationSettings.formSelector))
-  console.log(formList)
+  const formList = Array.from(
+    document.querySelectorAll(validationSettings.formSelector)
+  );
   formList.forEach((formElement) => {
-    console.log(formElement)
-    const validator = new FormValidator(validationSettings, formElement)
-    const formName = formElement.id
+    const validator = new FormValidator(validationSettings, formElement);
+    const formName = formElement.id;
     formValidators[formName] = validator;
-   validator.enableValidation();
+    validator.enableValidation();
   });
-  console.log(formValidators)
 };
 
 enableValidation(validationSettings);
@@ -46,6 +44,33 @@ enableValidation(validationSettings);
 /* -------------------------------------------------------------------------- */
 
 const api = new Api(apiOptions);
+
+/* -------------------------------------------------------------------------- */
+/*                                   Section                                  */
+/* -------------------------------------------------------------------------- */
+
+let cardSection;
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cardSection = new Section(
+      {
+        items: cards,
+        renderer: (cardData) => {
+          const cardEl = renderCard(cardData);
+          cardSection.addItem(cardEl);
+        },
+      },
+      ".cards__list"
+    );
+    cardSection.renderItems();
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+// api.getInitialCards().then((res) => console.log('initialCards returned', res));
 
 /* -------------------------------------------------------------------------- */
 /*                               Popup                                        */
@@ -85,25 +110,13 @@ const changeProfileAvatarPopUp = new PopupWithForm(
 );
 changeProfileAvatarPopUp.setEventListeners();
 
-/* -------------------------------------------------------------------------- */
-/*                                   Section                                  */
-/* -------------------------------------------------------------------------- */
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: async (item) => {
-      console.log(item);
-      const cardEl = await api.addCard(item);
-      console.log(cardEl);
-//       cardSection.addItem(cardEl);
-    },
-  },
-//   ".cards__list"
+
+const userInfoNew = new UserInfo(
+  profileName,
+  profileDescription,
+  profileAvatar
 );
-// cardSection.renderItems();
-
-const userInfoNew = new UserInfo(profileName, profileDescription, profileAvatar);
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
@@ -151,14 +164,16 @@ avatarImage.addEventListener("click", () => {
   changeProfileAvatarPopUp.open();
 });
 
-
 // The code below all 'works'; when you start studying tomorrow work through it again and continue.
 // const avatarLink = new URL('https://github.com/JerryWJackson/se_project_aroundtheus/blob/create-rest-api_sprint9/src/images/jwj-avatar.png');
 // api.editUserAvatar(avatarLink).then((res)=> console.log(res));
 // api.editUser('Jerry W Jackson', 'Renaissance Man').then((res)=> console.log(res));
 
 // api.clearAllCards();
-const aCard = { location: 'Fall Creek Falls', link: 'https://unsplash.com/photos/waterfalls-in-the-middle-of-forest-during-daytime-mMkmDQsEb6A'}
-// api.addCard(aCard);
-// api.getInitialCards().then((res) => console.log('fetchCards returned', res));
-api.fetchCards().then((res) => console.log('fetchCards returned', res));
+// const aCard = {
+//   location: "Fall Creek Falls",
+//   link: "https://unsplash.com/photos/waterfalls-in-the-middle-of-forest-during-daytime-mMkmDQsEb6A",
+// };
+// // api.addCard(aCard);
+
+// api.fetchCards().then((res) => console.log("fetchCards returned", res));
