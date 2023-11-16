@@ -40,11 +40,11 @@ export default class Card {
   }
 
   _handleDeleteCard() {
-    let cardId = this._confirmDelete();
+    // let cardId = this._confirmDelete();
     this._cardElement.remove();
     this._cardElement = null;
-    console.log('(before return) cardId is', cardId);
-    return cardId;
+    // console.log('(before return) cardId is', cardId);
+    // return cardId;
   }
 
   _getTemplate() {

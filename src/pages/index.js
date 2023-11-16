@@ -14,7 +14,7 @@ import FormValidator from "../components/FormValidator.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopUpWithImage from "../components/PopupWithImage.js";
-import Popup from "../components/Popup.js";
+import PopupWithConfirmation from "../components/PopopWithConfirmation.js";
 import Section from "../components/Section.js";
 import Api from "../components/API.js";
 import "./index.css";
@@ -96,7 +96,7 @@ addCardPopUp.setEventListeners();
 
 /* ---------------------------Popup Confirm Delete--------------------------- */
 
-const confirmDeletePopup = new PopupWithForm(
+const confirmDeletePopup = new PopupWithConfirmation(
   "#confirm-image-delete-popup",
   handleConfirmDeleteFormSubmit
 );
@@ -150,11 +150,12 @@ function handleAddCardFormSubmit(data) {
   addCardPopUp.close();
 }
 
-function handleConfirmDeleteFormSubmit(cardId) {
-  console.log("(after return) cardId is", cardId);
-
-  api.deleteCard(cardId);
-  confirmDeletePopup.close();
+function handleConfirmDeleteFormSubmit(card) {
+  console.log("(after return) card is", card);
+  confirmDeletePopup.setSubmitAction(() => {
+    api.deleteCard(card);
+    confirmDeletePopup.close();
+  })
 }
 
 /* -------------------------------------------------------------------------- */
