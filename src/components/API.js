@@ -85,7 +85,7 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: card.location,
+        name: card.name,
         link: card.link,
       }),
     }).catch((err) => {

@@ -144,6 +144,8 @@ function handleEditProfileFormSubmit(data) {
 function handleAddCardFormSubmit(data) {
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
+  console.log(data)
+  api.addCard(data);
   addCardPopUp.close();
 }
 

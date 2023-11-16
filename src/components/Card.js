@@ -1,6 +1,6 @@
 export default class Card {
   constructor({ name, link, _id }, cardSelector, handleImageClick) {
-    this._location = name;
+    this._name = name;
     this._link = link;
     this._cardId = _id;
     this._cardSelector = cardSelector;
@@ -9,7 +9,7 @@ export default class Card {
       "#confirm-image-delete-popup"
     );
     this._data = {
-      location: this._location,
+      location: this._name,
       link: this._link,
     };
   }
@@ -63,8 +63,8 @@ export default class Card {
     this.cardLocation = this._cardElement.querySelector(".card__location");
     // get card view
     this._cardImage.src = this._link;
-    this._cardImage.alt = this._location;
-    this.cardLocation.textContent = this._location;
+    this._cardImage.alt = this._name;
+    this.cardLocation.textContent = this._name;
     //set event listeners
     this._setEventListeners();
     //return the card
