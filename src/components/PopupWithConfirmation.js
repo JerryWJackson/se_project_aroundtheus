@@ -1,10 +1,9 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithConfirmation extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
+  constructor(popupSelector, handleDeleteConfirmSubmit) {
     super({ popupSelector });
-    this._popupForm = this._popupElement.querySelector(".popup__form");
-    this._handleFormSubmit = handleFormSubmit;
+    this._handleDeleteConfirmSubmit = handleDeleteConfirmSubmit;
   }
 
   // this function accepts an function as an argument, and assigns it to this
@@ -15,5 +14,11 @@ export default class PopupWithConfirmation extends Popup {
   setEventListeners() {
     // set event listener with this._handleSubmitCallback as it's handler
     // don't forget to call super.setEventListeners
+    this._popupElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      debugger;
+      this._handleSubmitCallback;
+    });
+    super.setEventListeners();
   }
 }

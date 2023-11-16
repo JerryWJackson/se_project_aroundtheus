@@ -1,10 +1,11 @@
 export default class Card {
-  constructor({ name, link, _id }, cardSelector, handleImageClick) {
+  constructor({ name, link, _id }, cardSelector, handleImageClick, handleDeleteConfirmSubmit) {
     this._name = name;
     this._link = link;
     this._cardId = _id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteConfirmSubmit = handleDeleteConfirmSubmit;
     this._confirmDeleteImagePopup = document.querySelector(
       "#confirm-image-delete-popup"
     );
@@ -21,7 +22,7 @@ export default class Card {
     });
     // card__delete-button
     this._cardDeleteIcon.addEventListener("click", () => {
-      this._handleDeleteCard(this);
+      this._handleDeleteConfirmSubmit(this);
     });
 
     this._cardImage.addEventListener("click", () => {
