@@ -93,10 +93,11 @@ export default class Api {
     });
   }
 
-  deleteCard(cardId) {
+  deleteCard(card) {
     return this._request(`${this._cardRoute}/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
+      body: JSON.stringify(card)
     }).catch((err) => {
       console.error(err);
     });

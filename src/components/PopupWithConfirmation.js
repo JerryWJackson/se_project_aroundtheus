@@ -15,9 +15,8 @@ export default class PopupWithConfirmation extends Popup {
     // set event listener with this._handleSubmitCallback as it's handler
     // don't forget to call super.setEventListeners
     this._popupElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      debugger;
-      this._handleSubmitCallback;
+      console.log('submit button clicked');
+      this._handleSubmitCallback();
     });
     super.setEventListeners();
   }

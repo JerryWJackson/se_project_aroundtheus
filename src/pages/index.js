@@ -158,6 +158,7 @@ function handleAddCardFormSubmit(data) {
 function handleDeleteConfirmSubmit(card) {
   confirmDeletePopup.open();
   confirmDeletePopup.setSubmitAction(() => {
+    console.log(card);
     api.deleteCard(card);
     confirmDeletePopup.close();
   });
