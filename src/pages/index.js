@@ -144,13 +144,16 @@ function handleEditProfileFormSubmit(data) {
 function handleAddCardFormSubmit(data) {
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
-  console.log(data)
-  api.addCard(data);
+  api.addCard(data).then((resData) => {
+    console.log(resData._id);
+    // let thisCardId = resData._id;
+  });
   addCardPopUp.close();
 }
 
 function handleConfirmDeleteFormSubmit() {
   console.log('it works');
+  confirmDeletePopup._confirmDelete();
 }
 
 /* -------------------------------------------------------------------------- */
