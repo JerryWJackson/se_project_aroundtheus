@@ -45,10 +45,6 @@ enableValidation(validationSettings);
 
 const api = new Api(apiOptions);
 
-
-const profileData = api.fetchUserInfo()
-
-
 /* -------------------------------------------------------------------------- */
 /*                                   Section                                  */
 /* -------------------------------------------------------------------------- */
@@ -115,17 +111,16 @@ const changeProfileAvatarPopUp = new PopupWithForm(
 );
 changeProfileAvatarPopUp.setEventListeners();
 
-console.log('profileData is', profileData);
-console.log('name is', profileData.name);
-console.log('occupation is', profileData.about);
-console.log('avatar link is', profileData.avatar);
 const userInfoNew = new UserInfo(
   profileName,
   profileDescription,
   profileAvatar
 );
-userInfoNew.setUserInfo(profileData.name, profileData.about);
-userInfoNew.setUserAvatar(profileData.avatar);
+
+api.fetchUserInfo().then((data) => {
+  userInfoNew.setUserInfo(data);
+})
+
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
@@ -142,8 +137,7 @@ function handleImageClick(data) {
 
 function handleEditProfileFormSubmit(data) {
   userInfoNew.setUserInfo(data);
-  console.log('userInfo', userInfoNew);
-  api.editUserInfo(data.name, data.occupation);
+  api.editUserInfo(data);
   profileEditPopup.close();
 }
 

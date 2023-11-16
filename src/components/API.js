@@ -31,13 +31,13 @@ export default class Api {
     });
   }
 
-  editUserInfo(name, occupation) {
+  editUserInfo({ name, about }) {
     return this._request(this._userRoute, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: name,
-        about: occupation,
+        about: about,
       }),
     }).catch((err) => {
       console.error(err);

@@ -8,8 +8,8 @@ export default class UserInfo {
   getUserInfo() {
     const userData = {
       name: this._name.textContent,
-      occupation: this._about.textContent,
-      avatar: this._avatar.src
+      about: this._about.textContent,
+      link: this._avatar.src
     };
     // console.log(userData);
     return userData;
@@ -20,7 +20,7 @@ export default class UserInfo {
     this._about.textContent = about;
   }
 
-  setUserAvatar(link) {
+  setUserAvatar({ link }) {
     this._avatar.src = link
   }
 }

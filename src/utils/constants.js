@@ -63,7 +63,7 @@ export const profileAvatar = ".profile__avatar-image";
 export const avatarImage = document.querySelector('.profile__avatar-image')
 export const popupProfileEditNameInput = document.querySelector("#name");
 export const popupProfileEditDescriptionInput =
-  document.querySelector("#description");
+  document.querySelector("#about");
 export const popupProfileEditCloseButton = profileEditPopup.querySelector(
   "#edit-popup-close-button"
 );
