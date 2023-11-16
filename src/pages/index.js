@@ -100,7 +100,6 @@ addCardPopUp.setEventListeners();
 /* ---------------------------Popup Confirm Delete--------------------------- */
 
 const confirmDeletePopup = new PopupWithForm("#confirm-image-delete-popup", handleConfirmDeleteFormSubmit);
-console.log(confirmDeletePopup);
 confirmDeletePopup.setEventListeners();
 
 /* ------------------------Change Profile Avatar Popup----------------------- */
@@ -153,7 +152,10 @@ function handleAddCardFormSubmit(data) {
 
 function handleConfirmDeleteFormSubmit() {
   console.log('it works');
-  confirmDeletePopup._confirmDelete();
+  console.log(this);
+  return true;
+
+  // api.deleteCard()
 }
 
 /* -------------------------------------------------------------------------- */

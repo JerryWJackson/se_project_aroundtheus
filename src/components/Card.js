@@ -34,12 +34,14 @@ export default class Card {
   }
 
   _confirmDelete() {
-    this._confirmDeleteImagePopup.open();
-    return isConfirmed;
+    this._confirmDeleteImagePopup.classList.add('popup_opened');
+    document.addEventListener("keydown", this._handleEscClose);
+    return true;
   }
 
   _handleDeleteCard() {
-    const isConfirmed = this._confirmDelete();
+    let isConfirmed = this._confirmDelete();
+    console.log('isConfirmed is ', isConfirmed);
     if (isConfirmed) {
       this._cardElement.remove();
       this._cardElement = null;
