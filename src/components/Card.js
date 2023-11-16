@@ -21,7 +21,7 @@ export default class Card {
     });
     // card__delete-button
     this._cardDeleteIcon.addEventListener("click", () => {
-      this._handleDeleteCard();
+      this._handleDeleteCard(this);
     });
 
     this._cardImage.addEventListener("click", () => {
@@ -34,18 +34,17 @@ export default class Card {
   }
 
   _confirmDelete() {
-    this._confirmDeleteImagePopup.classList.add('popup_opened');
+    this._confirmDeleteImagePopup.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
-    return true;
+    return this._cardId;
   }
 
   _handleDeleteCard() {
-    let isConfirmed = this._confirmDelete();
-    console.log('isConfirmed is ', isConfirmed);
-    if (isConfirmed) {
-      this._cardElement.remove();
-      this._cardElement = null;
-    }
+    let cardId = this._confirmDelete();
+    this._cardElement.remove();
+    this._cardElement = null;
+    console.log('(before return) cardId is', cardId);
+    return cardId;
   }
 
   _getTemplate() {

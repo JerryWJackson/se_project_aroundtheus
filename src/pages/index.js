@@ -33,10 +33,7 @@ const enableValidation = (validationSettings) => {
     formValidators[formName] = validator;
     validator.enableValidation();
   });
-  console.log(formList);
-  console.log(formValidators);
 };
-
 enableValidation(validationSettings);
 
 /* -------------------------------------------------------------------------- */
@@ -99,7 +96,10 @@ addCardPopUp.setEventListeners();
 
 /* ---------------------------Popup Confirm Delete--------------------------- */
 
-const confirmDeletePopup = new PopupWithForm("#confirm-image-delete-popup", handleConfirmDeleteFormSubmit);
+const confirmDeletePopup = new PopupWithForm(
+  "#confirm-image-delete-popup",
+  handleConfirmDeleteFormSubmit
+);
 confirmDeletePopup.setEventListeners();
 
 /* ------------------------Change Profile Avatar Popup----------------------- */
@@ -118,7 +118,7 @@ const userInfoNew = new UserInfo(
 
 api.fetchUserInfo().then((data) => {
   userInfoNew.setUserInfo(data);
-})
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
@@ -150,12 +150,11 @@ function handleAddCardFormSubmit(data) {
   addCardPopUp.close();
 }
 
-function handleConfirmDeleteFormSubmit() {
-  console.log('it works');
-  console.log(this);
-  return true;
+function handleConfirmDeleteFormSubmit(cardId) {
+  console.log("(after return) cardId is", cardId);
 
-  // api.deleteCard()
+  api.deleteCard(cardId);
+  confirmDeletePopup.close();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -178,17 +177,3 @@ avatarImage.addEventListener("click", () => {
   formValidators["change-profile-avatar-popup-form"].toggleButtonState();
   changeProfileAvatarPopUp.open();
 });
-
-// The code below all 'works'; when you start studying tomorrow work through it again and continue.
-// const avatarLink = new URL('https://github.com/JerryWJackson/se_project_aroundtheus/blob/create-rest-api_sprint9/src/images/jwj-avatar.png');
-// api.editUserAvatar(avatarLink).then((res)=> console.log(res));
-// api.editUser('Jerry W Jackson', 'Renaissance Man').then((res)=> console.log(res));
-
-// api.clearAllCards();
-// const aCard = {
-//   location: "Fall Creek Falls",
-//   link: "https://unsplash.com/photos/waterfalls-in-the-middle-of-forest-during-daytime-mMkmDQsEb6A",
-// };
-// // api.addCard(aCard);
-
-// api.fetchCards().then((res) => console.log("fetchCards returned", res));
