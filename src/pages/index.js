@@ -117,7 +117,9 @@ const userInfoNew = new UserInfo(
 );
 
 api.fetchUserInfo().then((data) => {
-  userInfoNew.setUserInfo(data);
+  let userData = data;
+  userInfoNew.setUserInfo(userData.name, userData.about);
+  userInfoNew.setUserAvatar(userData.avatar);
 });
 
 /* -------------------------------------------------------------------------- */
