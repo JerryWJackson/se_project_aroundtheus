@@ -106,7 +106,7 @@ confirmDeletePopup.setEventListeners();
 
 const changeProfileAvatarPopUp = new PopupWithForm(
   "#change-profile-avatar-popup",
-  handleAddCardFormSubmit
+  handleChangeProfileAvatarFormSubmit
 );
 changeProfileAvatarPopUp.setEventListeners();
 
@@ -147,6 +147,14 @@ function handleEditProfileFormSubmit(data) {
   api.editUserInfo(data);
   profileEditPopup.close();
 }
+
+function handleChangeProfileAvatarFormSubmit(data) {
+  console.log(data.link);
+  userInfoNew.setUserAvatar(data.link);
+  api.editUserAvatar(data.link)
+  changeProfileAvatarPopUp.close()
+}
+
 
 function handleAddCardFormSubmit(data) {
   const cardValue = renderCard(data);
