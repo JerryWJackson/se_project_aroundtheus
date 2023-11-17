@@ -129,7 +129,8 @@ function renderCard(data) {
     data,
     "#card-template",
     handleImageClick,
-    handleDeleteConfirmSubmit
+    handleDeleteConfirmSubmit,
+    handleCardLike
   );
   return card.getView();
 }
@@ -148,20 +149,22 @@ function handleEditProfileFormSubmit(data) {
 function handleAddCardFormSubmit(data) {
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
-  api.addCard(data).then((resData) => {
-    console.log(resData._id);
-    // let thisCardId = resData._id;
-  });
+  api.addCard(data)
   addCardPopUp.close();
 }
 
 function handleDeleteConfirmSubmit(card) {
+  console.log(card);
   confirmDeletePopup.open();
   confirmDeletePopup.setSubmitAction(() => {
-    console.log(card);
-    api.deleteCard(card);
+    api.deleteCard(card._cardId);
+    card.handleDeleteCard();
     confirmDeletePopup.close();
   });
+}
+
+function handleCardLike(card) {
+  api.likeCard(card._cardId);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -184,3 +187,5 @@ avatarImage.addEventListener("click", () => {
   formValidators["change-profile-avatar-popup-form"].toggleButtonState();
   changeProfileAvatarPopUp.open();
 });
+
+// api.likeCard(`6552765e5975730019931648`);

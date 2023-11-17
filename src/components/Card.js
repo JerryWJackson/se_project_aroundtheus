@@ -2,7 +2,7 @@ export default class Card {
   constructor({ name, link, _id }, cardSelector, handleImageClick, handleDeleteConfirmSubmit) {
     this._name = name;
     this._link = link;
-    this._cardId = _id;
+    this.cardID = _id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteConfirmSubmit = handleDeleteConfirmSubmit;
@@ -34,13 +34,7 @@ export default class Card {
     this._cardLikeButton.classList.toggle("card__like-button_active");
   }
 
-  _confirmDelete() {
-    this._confirmDeleteImagePopup.classList.add("popup_opened");
-    document.addEventListener("keydown", this._handleEscClose);
-    return this._cardId;
-  }
-
-  _handleDeleteCard() {
+  handleDeleteCard() {
     // let cardId = this._confirmDelete();
     this._cardElement.remove();
     this._cardElement = null;

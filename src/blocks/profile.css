@@ -13,6 +13,24 @@
   height: 120px;
 }
 
+.profile__avatar-image:hover {
+  opacity: 0.8;
+}
+
+.profile__avatar-edit-button {
+  max-height: 26px;
+  max-width: 26px;
+  visibility: hidden;
+  opacity: 0;
+  left: 50px;
+  background: url("../images/edit-avatar.svg");
+}
+
+.profile__avatar-edit-button:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
 .profile__info {
   display: grid;
   grid-template-areas:

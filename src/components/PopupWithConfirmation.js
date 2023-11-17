@@ -3,6 +3,7 @@ import Popup from "./Popup.js";
 export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector, handleDeleteConfirmSubmit) {
     super({ popupSelector });
+    this._popupForm = this._popupElement.querySelector('#confirm-image-delete-popup-form');
     this._handleDeleteConfirmSubmit = handleDeleteConfirmSubmit;
   }
 
@@ -14,8 +15,8 @@ export default class PopupWithConfirmation extends Popup {
   setEventListeners() {
     // set event listener with this._handleSubmitCallback as it's handler
     // don't forget to call super.setEventListeners
-    this._popupElement.addEventListener("submit", (evt) => {
-      console.log('submit button clicked');
+    this._popupForm.addEventListener("submit", (evt) => {
+      evt.preventDefault();
       this._handleSubmitCallback();
     });
     super.setEventListeners();

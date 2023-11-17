@@ -72,14 +72,6 @@ export default class Api {
     });
   }
 
-  fetchCard(cardId) {
-    return this._request(`${this._cardRoute}/${cardId}`, {
-      headers: this._headers,
-    }).catch((err) => {
-      console.error(err);
-    });
-  }
-
   addCard(card) {
     return this._request(`${this._cardRoute}`, {
       method: "POST",
@@ -94,17 +86,17 @@ export default class Api {
   }
 
   deleteCard(card) {
-    return this._request(`${this._cardRoute}/${cardId}`, {
+    console.log(card)
+    return this._request(`${this._cardRoute}/${card.cardId}`, {
       method: "DELETE",
       headers: this._headers,
-      body: JSON.stringify(card)
     }).catch((err) => {
       console.error(err);
     });
   }
 
-  likeCard(cardId) {
-    return this._request(`${this._cardRoute}/${cardId}/likes`, {
+  likeCard(id) {
+    return this._request(`${this._cardRoute}/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
       body: JSON.stringify({
@@ -115,8 +107,8 @@ export default class Api {
     });
   }
 
-  dislikeCard(cardId) {
-    return this._request(`${this._cardRoute}/${cardId}/likes`, {
+  dislikeCard(id) {
+    return this._request(`${this._cardRoute}/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).catch((err) => {

@@ -27,6 +27,7 @@
             src="<%=require('./images/jwj-avatar.png')%>"
             alt="avatar image"
           />
+          <img class="profile__avatar-edit-button" src="" alt="change avatar image" />
           <div class="profile__info">
             <h1 class="profile__name"></h1>
             <button
@@ -145,14 +146,16 @@
       </div>
     </div>
 
-    <div class="popup" id="confirm-image-delete-popup">
-      <div class="popup__container">
+    <div class="popup popup__type-confirmation" id="confirm-image-delete-popup">
+      <div class="popup__container popup__container_type_confirmation">
         <h2 class="popup__heading">Are you sure?</h2>
         <button
           class="popup__close"
           id="confirm-image-delete-popup-close-button"
         ></button>
-        <button class="popup__button" type="submit">Yes</button>
+        <form class="popup__form popup__form_type_confirmation" id="confirm-image-delete-popup-form">
+          <button class="popup__button popup__button-type-confirmation" type="submit">Yes</button>
+        </form>
       </div>
     </div>
 
