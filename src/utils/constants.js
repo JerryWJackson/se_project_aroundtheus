@@ -2,15 +2,15 @@
 /*                       special purpose options onjects                      */
 /* -------------------------------------------------------------------------- */
 export const apiOptions = {
-  "baseUrl": 'https://around-api.en.tripleten-services.com/v1',
-  "defaultHeaders": {
-    "authorization": "ef1674b3-2f84-46ba-ade1-b5216183ce24",
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  defaultHeaders: {
+    authorization: "ef1674b3-2f84-46ba-ade1-b5216183ce24",
     "Content-Type": "application/json",
-  }
-}
+  },
+};
 
 export const validationSettings = {
-  formSelector: '.popup__form',
+  formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
@@ -60,7 +60,7 @@ export const cardTemplate =
 export const profileName = ".profile__name";
 export const profileDescription = ".profile__description";
 export const profileAvatar = ".profile__avatar-image";
-export const avatarImage = document.querySelector('.profile__avatar-image')
+export const avatarImage = document.querySelector(".profile__avatar-image");
 export const popupProfileEditNameInput = document.querySelector("#name");
 export const popupProfileEditDescriptionInput =
   document.querySelector("#about");

@@ -138,7 +138,6 @@ function renderCard(data) {
 }
 
 function handleImageClick(data) {
-  console.log(data);
   imagePopUp.open(data);
 }
 
@@ -151,15 +150,14 @@ function handleEditProfileFormSubmit(data) {
 function handleChangeProfileAvatarFormSubmit(data) {
   console.log(data.link);
   userInfoNew.setUserAvatar(data.link);
-  api.editUserAvatar(data.link)
-  changeProfileAvatarPopUp.close()
+  api.editUserAvatar(data.link);
+  changeProfileAvatarPopUp.close();
 }
-
 
 function handleAddCardFormSubmit(data) {
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
-  api.addCard(data)
+  api.addCard(data);
   addCardPopUp.close();
 }
 
@@ -167,14 +165,23 @@ function handleDeleteConfirmSubmit(card) {
   console.log(card);
   confirmDeletePopup.open();
   confirmDeletePopup.setSubmitAction(() => {
-    api.deleteCard(card._cardId);
+    api.deleteCard(card);
     card.handleDeleteCard();
     confirmDeletePopup.close();
   });
 }
 
 function handleCardLike(card) {
-  api.likeCard(card._cardId);
+  console.log("card is", card);
+  if (!card.isLiked) {
+    api.likeCard(card.cardId).then(() => {
+      card.updateLikeStatus(true);
+    });
+  } else {
+    api.dislikeCard(card.cardId).then(() => {
+      card.updateLikeStatus(false);
+    });
+  }
 }
 
 /* -------------------------------------------------------------------------- */

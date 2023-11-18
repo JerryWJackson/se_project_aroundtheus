@@ -1,11 +1,19 @@
 export default class Card {
-  constructor({ name, link, _id }, cardSelector, handleImageClick, handleDeleteConfirmSubmit) {
+  constructor(
+    { name, link, _id, isLiked },
+    cardSelector,
+    handleImageClick,
+    handleDeleteConfirmSubmit,
+    handleCardLike
+  ) {
     this._name = name;
     this._link = link;
-    this.cardID = _id;
+    this.cardId = _id;
+    this.isLiked = isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteConfirmSubmit = handleDeleteConfirmSubmit;
+    this._handleCardLike = handleCardLike;
     this._confirmDeleteImagePopup = document.querySelector(
       "#confirm-image-delete-popup"
     );
@@ -18,7 +26,7 @@ export default class Card {
   _setEventListeners() {
     // card__like-button
     this._cardLikeButton.addEventListener("click", () => {
-      this._handleLikeIcon();
+      this._handleCardLike(this);
     });
     // card__delete-button
     this._cardDeleteIcon.addEventListener("click", () => {
@@ -30,16 +38,29 @@ export default class Card {
     });
   }
 
-  _handleLikeIcon() {
-    this._cardLikeButton.classList.toggle("card__like-button_active");
-  }
-
   handleDeleteCard() {
     // let cardId = this._confirmDelete();
     this._cardElement.remove();
     this._cardElement = null;
     // console.log('(before return) cardId is', cardId);
     // return cardId;
+  }
+
+  updateLikeStatus(isLiked) {
+    this.isLiked = isLiked;
+    this._renderLikes();
+  }
+
+  _renderLikes() {
+    if (this.isLiked) {
+      this._cardLikeButton.classList.add("card__like-button_active");
+    } else {
+      this._cardLikeButton.classList.remove("card__like-button_active");
+    }
+  }
+
+  getId() {
+    return this.id;
   }
 
   _getTemplate() {
