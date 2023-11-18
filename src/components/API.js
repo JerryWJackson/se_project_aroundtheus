@@ -37,8 +37,6 @@ export default class Api {
         name: name,
         about: about,
       }),
-    }).catch((err) => {
-      console.error(err);
     });
   }
   editUserAvatar(link) {
@@ -48,8 +46,6 @@ export default class Api {
       body: JSON.stringify({
         avatar: link,
       }),
-    }).catch((err) => {
-      console.error(err);
     });
   }
 
@@ -57,16 +53,12 @@ export default class Api {
   async getInitialCards() {
     return await this._request(`${this._cardRoute}`, {
       headers: this._headers,
-    }).catch((err) => {
-      console.error(err);
     });
   }
 
   fetchCurrentCards() {
     return this._request(`${this._cardRoute}`, {
       headers: this._headers,
-    }).catch((err) => {
-      console.error(err);
     });
   }
 
@@ -78,8 +70,6 @@ export default class Api {
         name: card.name,
         link: card.link,
       }),
-    }).catch((err) => {
-      console.error(err);
     });
   }
 
@@ -87,8 +77,6 @@ export default class Api {
     return this._request(`${this._cardRoute}/${card.cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).catch((err) => {
-      console.error(err);
     });
   }
 
@@ -99,8 +87,6 @@ export default class Api {
       body: JSON.stringify({
         isLiked: true,
       }),
-    }).catch((err) => {
-      console.error(err);
     });
   }
 
@@ -108,8 +94,6 @@ export default class Api {
     return this._request(`${this._cardRoute}/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).catch((err) => {
-      console.error(err);
     });
   }
 }

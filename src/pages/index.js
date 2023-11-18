@@ -46,7 +46,7 @@ const api = new Api(apiOptions);
 /*                                   Section                                  */
 /* -------------------------------------------------------------------------- */
 
-const cardSection = [];
+let cardSection = [];
 
 api
   .getInitialCards()
@@ -67,7 +67,6 @@ api
     console.error(error);
   });
 
-console.log(cardSection);
 /* -------------------------------------------------------------------------- */
 /*                               Popups                                       */
 /* -------------------------------------------------------------------------- */
@@ -117,8 +116,7 @@ const userInfoNew = new UserInfo(
 
 api
   .fetchUserInfo()
-  .then((data) => (userData = data))
-  .then((data) => {
+  .then((userData) => {
     userInfoNew.setUserInfo(userData.name, userData.about);
     userInfoNew.setUserAvatar(userData.avatar);
   })
@@ -149,8 +147,8 @@ function handleEditProfileFormSubmit(data) {
   profileEditPopup.setLoading(true, "Saving...");
   api
     .editUserInfo(data)
-    .then(() => {
-      userInfoNew.setUserInfo(data);
+    .then((userData) => {
+      userInfoNew.setUserInfo(userData.name, userData.about);
       profileEditPopup.close();
     })
     .catch((err) => {
@@ -177,12 +175,11 @@ function handleAddCardFormSubmit(data) {
   addCardPopUp.setLoading(true, "Saving...");
   api
     .addCard(data)
-    .then((res) => card)
     .then((card) => {
-      console.log("cardData for adding", cardData),
-        (cardValue = renderCard(card)),
-        cardSection.addItem(cardValue),
-        addCardPopUp.close();
+      console.log("cardData for adding", cardData);
+      cardValue = renderCard(card);
+      cardSection.addItem(cardValue);
+      addCardPopUp.close();
     })
     .catch((err) => {
       console.error(err);
@@ -191,9 +188,9 @@ function handleAddCardFormSubmit(data) {
 }
 
 function handleDeleteConfirmSubmit(card) {
-  confirmDeletePopup.setLoading(true, "Saving...");
   confirmDeletePopup.open();
   confirmDeletePopup.setSubmitAction(() => {
+    confirmDeletePopup.setLoading(true, "Saving...");
     api
       .deleteCard(card)
       .then(() => {

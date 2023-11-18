@@ -23,4 +23,9 @@ export default class PopupWithConfirmation extends Popup {
     });
     super.setEventListeners();
   }
+
+  setLoading(isLoading, buttonValue) {
+    this._submitButton.textContent = isLoading ? buttonValue : this._submitButtonValue;
+  }
+
 }
