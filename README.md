@@ -28,4 +28,4 @@ The project can be viewed [here](https://jerrywjackson.github.io/se_project_arou
 
 **Screenshot**
 
-![Screenshot of page](./src/images/Capture.png)
+![Screenshot of page](./src/images/se_around-the-us-landing.png)
