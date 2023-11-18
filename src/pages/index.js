@@ -142,25 +142,31 @@ function handleImageClick(data) {
 }
 
 function handleEditProfileFormSubmit(data) {
+  profileEditPopup.setLoading('Saving...');
   userInfoNew.setUserInfo(data);
   api.editUserInfo(data).then(() => {
     profileEditPopup.close();
-  });
+  }).finally(() => profileEditPopup.setLoading('Save'));
 }
 
 function handleChangeProfileAvatarFormSubmit(data) {
+  changeProfileAvatarPopUp.setLoading('Saving...')
   userInfoNew.setUserAvatar(data.link);
   api.editUserAvatar(data.link).then(() => {
     changeProfileAvatarPopUp.close();
-  });
+  }).finally(() => changeProfileAvatarPopUp.setLoading('Save'));
 }
 
 function handleAddCardFormSubmit(data) {
+  addCardPopUp.setLoading('Saving...');
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
-  api.addCard(data).then(() => {
-    addCardPopUp.close();
-  });
+  api
+    .addCard(data)
+    .then(() => {
+      addCardPopUp.close();
+    })
+    .finally(() => addCardPopUp.setLoading('Create'));
 }
 
 function handleDeleteConfirmSubmit(card) {

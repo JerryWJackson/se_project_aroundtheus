@@ -47,6 +47,7 @@ export default class Card {
   }
 
   updateLikeStatus(isLiked) {
+    console.log(isLiked);
     this.isLiked = isLiked;
     this._renderLikes();
   }

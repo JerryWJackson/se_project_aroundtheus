@@ -73,7 +73,6 @@ export default class FormValidator {
   resetValidation() {
     this.toggleButtonState();
     this._inputElements.forEach((inputElement) => {
-      console.log(inputElement);
       this._hideInputError(inputElement);
     });
   }

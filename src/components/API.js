@@ -44,8 +44,6 @@ export default class Api {
     });
   }
   editUserAvatar(link) {
-    console.log('(inside setUserAvatar()', link);
-
     return this._request(`${this._userRoute}/avatar`, {
       method: "PATCH",
       headers: this._headers,
@@ -88,7 +86,6 @@ export default class Api {
   }
 
   deleteCard(card) {
-    console.log(card)
     return this._request(`${this._cardRoute}/${card.cardId}`, {
       method: "DELETE",
       headers: this._headers,
@@ -98,7 +95,6 @@ export default class Api {
   }
 
   likeCard(id) {
-    console.log('likeCard fired!');
     return this._request(`${this._cardRoute}/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
@@ -111,7 +107,6 @@ export default class Api {
   }
 
   dislikeCard(id) {
-    console.log('dislikeCard fired!');
     return this._request(`${this._cardRoute}/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
