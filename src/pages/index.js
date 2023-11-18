@@ -143,26 +143,27 @@ function handleImageClick(data) {
 
 function handleEditProfileFormSubmit(data) {
   userInfoNew.setUserInfo(data);
-  api.editUserInfo(data);
-  profileEditPopup.close();
+  api.editUserInfo(data).then(() => {
+    profileEditPopup.close();
+  });
 }
 
 function handleChangeProfileAvatarFormSubmit(data) {
-  console.log(data.link);
   userInfoNew.setUserAvatar(data.link);
-  api.editUserAvatar(data.link);
-  changeProfileAvatarPopUp.close();
+  api.editUserAvatar(data.link).then(() => {
+    changeProfileAvatarPopUp.close();
+  });
 }
 
 function handleAddCardFormSubmit(data) {
   const cardValue = renderCard(data);
   cardSection.addItem(cardValue);
-  api.addCard(data);
-  addCardPopUp.close();
+  api.addCard(data).then(() => {
+    addCardPopUp.close();
+  });
 }
 
 function handleDeleteConfirmSubmit(card) {
-  console.log(card);
   confirmDeletePopup.open();
   confirmDeletePopup.setSubmitAction(() => {
     api.deleteCard(card);
@@ -172,7 +173,6 @@ function handleDeleteConfirmSubmit(card) {
 }
 
 function handleCardLike(card) {
-  console.log("card is", card);
   if (!card.isLiked) {
     api.likeCard(card.cardId).then(() => {
       card.updateLikeStatus(true);

@@ -59,10 +59,6 @@ export default class Card {
     }
   }
 
-  getId() {
-    return this.id;
-  }
-
   _getTemplate() {
     return document
       .querySelector(this._cardSelector)
