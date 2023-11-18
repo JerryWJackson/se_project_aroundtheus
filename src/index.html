@@ -22,20 +22,21 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__avatar-image"
-            src="<%=require('./images/jacques-cousteau-avatar.png')%>"
-            alt="Jacques Cousteau avatar image"
-          />
+          <img class="profile__avatar-image" src="" alt="avatar image" />
+          <button
+            class="profile__avatar-edit-button"
+            id="avatar-edit-button"
+            type="button"
+          ></button>
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name"></h1>
             <button
               type="button"
               class="profile__edit-button"
               id="profile-edit-button"
               aria-label
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button
             type="button"
@@ -74,15 +75,15 @@
           <span class="popup__error" id="name-error"></span>
           <input
             type="text"
-            name="occupation"
+            name="about"
             class="popup__input"
-            id="occupation"
+            id="about"
             placeholder="Occupation"
             minlength="2"
             maxlength="200"
             required
           />
-          <span class="popup__error" id="occupation-error"></span>
+          <span class="popup__error" id="about-error"></span>
           <button
             class="popup__button popup__button_disabled"
             type="submit"
@@ -105,24 +106,24 @@
         <form class="popup__form" id="create-place-popup-form">
           <input
             type="text"
-            name="location"
+            name="name"
             class="popup__input"
-            id="location"
+            id="location-name"
             placeholder="Location"
             minlength="1"
             maxlength="30"
             required
           />
-          <span class="popup__error" id="location-error"></span>
+          <span class="popup__error" id="location-name-error"></span>
           <input
             type="url"
             name="link"
             class="popup__input"
-            id="link"
+            id="location-link"
             placeholder="Image Link"
             required
           />
-          <span class="popup__error" id="link-error"></span>
+          <span class="popup__error" id="location-link-error"></span>
           <button
             class="popup__button popup__button_disabled"
             type="submit"
@@ -142,6 +143,55 @@
         ></button>
         <img src="#" alt="" class="popup__preview-image" id="preview-image" />
         <p class="popup__preview-text"></p>
+      </div>
+    </div>
+
+    <div class="popup popup__type-confirmation" id="confirm-image-delete-popup">
+      <div class="popup__container popup__container_type_confirmation">
+        <h2 class="popup__heading">Are you sure?</h2>
+        <button
+          class="popup__close"
+          id="confirm-image-delete-popup-close-button"
+        ></button>
+        <form
+          class="popup__form popup__form_type_confirmation"
+          id="confirm-image-delete-popup-form"
+        >
+          <button
+            class="popup__button popup__button-type-confirmation"
+            type="submit"
+          >
+            Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup" id="change-profile-avatar-popup">
+      <div class="popup__container">
+        <button
+          class="popup__close"
+          id="change-profile-avatar-popup-close-button"
+        ></button>
+        <h2 class="popup__heading">Change profile avatar</h2>
+        <form class="popup__form" id="change-profile-avatar-popup-form">
+          <input
+            type="url"
+            name="link"
+            class="popup__input"
+            id="avatar-link"
+            placeholder="Image Link"
+            required
+          />
+          <span class="popup__error" id="avatar-link-error"></span>
+          <button
+            class="popup__button popup__button_disabled"
+            type="submit"
+            disabled
+          >
+            Save
+          </button>
+        </form>
       </div>
     </div>
 
