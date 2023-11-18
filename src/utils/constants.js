@@ -23,6 +23,7 @@ export const validationSettings = {
 /* -------------------------------------------------------------------------- */
 export const profileEditButton = document.querySelector("#profile-edit-button");
 export const addNewCardButton = document.querySelector("#add-new-card-button");
+export const avatarEditButton = document.querySelector("#avatar-edit-button");
 
 /* -------------------------------------------------------------------------- */
 /*                             general list items                             */

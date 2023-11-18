@@ -7,7 +7,7 @@ import {
   profileAvatar,
   profileEditButton,
   addNewCardButton,
-  avatarImage,
+  avatarEditButton,
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
@@ -200,7 +200,7 @@ addNewCardButton.addEventListener("click", () => {
   addCardPopUp.open();
 });
 
-avatarImage.addEventListener("click", () => {
+avatarEditButton.addEventListener("click", () => {
   formValidators["change-profile-avatar-popup-form"].toggleButtonState();
   changeProfileAvatarPopUp.open();
 });
