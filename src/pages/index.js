@@ -176,8 +176,7 @@ function handleAddCardFormSubmit(data) {
   api
     .addCard(data)
     .then((card) => {
-      console.log("cardData for adding", cardData);
-      cardValue = renderCard(card);
+      let cardValue = renderCard(card);
       cardSection.addItem(cardValue);
       addCardPopUp.close();
     })

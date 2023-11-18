@@ -7,6 +7,8 @@ export default class PopupWithConfirmation extends Popup {
       "#confirm-image-delete-popup-form"
     );
     this._handleDeleteConfirmSubmit = handleDeleteConfirmSubmit;
+    this._submitButton = this._popupForm.querySelector(".popup__button");
+    this._submitButtonValue = this._submitButton.textContent;
   }
 
   // this function accepts an function as an argument, and assigns it to this
@@ -25,7 +27,8 @@ export default class PopupWithConfirmation extends Popup {
   }
 
   setLoading(isLoading, buttonValue) {
-    this._submitButton.textContent = isLoading ? buttonValue : this._submitButtonValue;
+    this._submitButton.textContent = isLoading
+      ? buttonValue
+      : this._submitButtonValue;
   }
-
 }
