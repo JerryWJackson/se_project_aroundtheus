@@ -46,7 +46,7 @@ const api = new Api(apiOptions);
 /*                                   Section                                  */
 /* -------------------------------------------------------------------------- */
 
-let cardSection;
+const cardSection = [];
 
 api
   .getInitialCards()
@@ -54,7 +54,7 @@ api
     cardSection = new Section(
       {
         items: cards,
-        renderer: (cardData) => {
+        renderer: function (cardData) {
           const cardEl = renderCard(cardData);
           cardSection.addItem(cardEl);
         },
@@ -67,10 +67,9 @@ api
     console.error(error);
   });
 
-// api.getInitialCards().then((res) => console.log('initialCards returned', res));
-
+console.log(cardSection);
 /* -------------------------------------------------------------------------- */
-/*                               Popup                                        */
+/*                               Popups                                       */
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- Edit Popup Form Profile---------------------- */
@@ -81,12 +80,12 @@ const profileEditPopup = new PopupWithForm(
 );
 profileEditPopup.setEventListeners();
 
-/* --------------------------- Popup Preview Image -------------------------- */
+/* --------------------------- Preview Image Popup -------------------------- */
 
 const imagePopUp = new PopUpWithImage("#preview-image-popup");
 imagePopUp.setEventListeners();
 
-/* --------------------------- Popup Add Card -------------------------- */
+/* -------------------------- Add Card Popup ------------------------------- */
 
 const addCardPopUp = new PopupWithForm(
   "#add-new-card-popup",
@@ -94,7 +93,7 @@ const addCardPopUp = new PopupWithForm(
 );
 addCardPopUp.setEventListeners();
 
-/* ---------------------------Popup Confirm Delete--------------------------- */
+/* ---------------------------Confirm Delete Popup-------------------------- */
 
 const confirmDeletePopup = new PopupWithConfirmation(
   "#confirm-image-delete-popup",
@@ -102,7 +101,7 @@ const confirmDeletePopup = new PopupWithConfirmation(
 );
 confirmDeletePopup.setEventListeners();
 
-/* ------------------------Change Profile Avatar Popup----------------------- */
+/* ------------------------Change Profile Avatar Popup---------------------- */
 
 const changeProfileAvatarPopUp = new PopupWithForm(
   "#change-profile-avatar-popup",
@@ -116,11 +115,16 @@ const userInfoNew = new UserInfo(
   profileAvatar
 );
 
-api.fetchUserInfo().then((data) => {
-  let userData = data;
-  userInfoNew.setUserInfo(userData.name, userData.about);
-  userInfoNew.setUserAvatar(userData.avatar);
-});
+api
+  .fetchUserInfo()
+  .then((data) => (userData = data))
+  .then((data) => {
+    userInfoNew.setUserInfo(userData.name, userData.about);
+    userInfoNew.setUserAvatar(userData.avatar);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
@@ -142,51 +146,85 @@ function handleImageClick(data) {
 }
 
 function handleEditProfileFormSubmit(data) {
-  profileEditPopup.setLoading('Saving...');
-  userInfoNew.setUserInfo(data);
-  api.editUserInfo(data).then(() => {
-    profileEditPopup.close();
-  }).finally(() => profileEditPopup.setLoading('Save'));
+  profileEditPopup.setLoading(true, "Saving...");
+  api
+    .editUserInfo(data)
+    .then(() => {
+      userInfoNew.setUserInfo(data);
+      profileEditPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => profileEditPopup.setLoading(false, "Save"));
 }
 
 function handleChangeProfileAvatarFormSubmit(data) {
-  changeProfileAvatarPopUp.setLoading('Saving...')
-  userInfoNew.setUserAvatar(data.link);
-  api.editUserAvatar(data.link).then(() => {
-    changeProfileAvatarPopUp.close();
-  }).finally(() => changeProfileAvatarPopUp.setLoading('Save'));
+  changeProfileAvatarPopUp.setLoading(true, "Saving...");
+  api
+    .editUserAvatar(data.link)
+    .then(() => {
+      userInfoNew.setUserAvatar(data.link);
+      changeProfileAvatarPopUp.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => changeProfileAvatarPopUp.setLoading(false, "Save"));
 }
 
 function handleAddCardFormSubmit(data) {
-  addCardPopUp.setLoading('Saving...');
-  const cardValue = renderCard(data);
-  cardSection.addItem(cardValue);
+  addCardPopUp.setLoading(true, "Saving...");
   api
     .addCard(data)
-    .then(() => {
-      addCardPopUp.close();
+    .then((res) => card)
+    .then((card) => {
+      console.log("cardData for adding", cardData),
+        (cardValue = renderCard(card)),
+        cardSection.addItem(cardValue),
+        addCardPopUp.close();
     })
-    .finally(() => addCardPopUp.setLoading('Create'));
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => addCardPopUp.setLoading(false, "Create"));
 }
 
 function handleDeleteConfirmSubmit(card) {
+  confirmDeletePopup.setLoading(true, "Saving...");
   confirmDeletePopup.open();
   confirmDeletePopup.setSubmitAction(() => {
-    api.deleteCard(card);
-    card.handleDeleteCard();
-    confirmDeletePopup.close();
+    api
+      .deleteCard(card)
+      .then(() => {
+        card.deleteCard(), confirmDeletePopup.close();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => confirmDeletePopup.setLoading(false, "Yes"));
   });
 }
 
 function handleCardLike(card) {
   if (!card.isLiked) {
-    api.likeCard(card.cardId).then(() => {
-      card.updateLikeStatus(true);
-    });
+    api
+      .likeCard(card.cardId)
+      .then(() => {
+        card.updateLikeStatus(true);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   } else {
-    api.dislikeCard(card.cardId).then(() => {
-      card.updateLikeStatus(false);
-    });
+    api
+      .dislikeCard(card.cardId)
+      .then(() => {
+        card.updateLikeStatus(false);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
 
@@ -210,5 +248,3 @@ avatarEditButton.addEventListener("click", () => {
   formValidators["change-profile-avatar-popup-form"].toggleButtonState();
   changeProfileAvatarPopUp.open();
 });
-
-// api.likeCard(`6552765e5975730019931648`);

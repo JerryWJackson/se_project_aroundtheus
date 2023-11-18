@@ -26,8 +26,6 @@ export default class Api {
   fetchUserInfo() {
     return this._request(this._userRoute, {
       headers: this._headers,
-    }).catch((err) => {
-      console.error(err);
     });
   }
 

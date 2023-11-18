@@ -38,7 +38,7 @@ export default class Card {
     });
   }
 
-  handleDeleteCard() {
+  deleteCard() {
     // let cardId = this._confirmDelete();
     this._cardElement.remove();
     this._cardElement = null;
@@ -79,6 +79,8 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this.cardLocation.textContent = this._name;
+    //render initial likes
+    this._renderLikes();
     //set event listeners
     this._setEventListeners();
     //return the card
